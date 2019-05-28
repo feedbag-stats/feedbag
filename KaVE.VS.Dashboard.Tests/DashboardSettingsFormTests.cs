@@ -70,6 +70,9 @@ namespace KaVE.VS.Dashboard.Tests
         }
 
         [TestMethod]
-        public void TestLoad() { }
+        public void TestLoad()
+        {
+
+        }
     }
 }
