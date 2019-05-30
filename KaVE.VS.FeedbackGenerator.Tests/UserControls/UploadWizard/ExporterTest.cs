@@ -272,7 +272,7 @@ namespace KaVE.VS.FeedbackGenerator.Tests.UserControls.UploadWizard
             Registry.RegisterComponent<IIoUtils>(new IoUtils());
             _sut.Export(
                 DateTime.Now,
-                new HttpPublisher(new Uri("http://kave.st.informatik.tu-darmstadt.de/test/upload")));
+                new WiHttpPublisher(new Uri("http://kave.st.informatik.tu-darmstadt.de/test/upload")));
             Registry.Clear();
         }
 

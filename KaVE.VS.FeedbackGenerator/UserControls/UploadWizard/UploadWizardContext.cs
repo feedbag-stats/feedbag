@@ -142,7 +142,7 @@ namespace KaVE.VS.FeedbackGenerator.UserControls.UploadWizard
             }
             else
             {
-                publisher = new HttpPublisher(GetUploadUrl());
+                publisher = new WiHttpPublisher(GetUploadUrl());
             }
             return publisher;
         }

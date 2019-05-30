@@ -26,12 +26,12 @@ namespace KaVE.RS.Commons.Tests_Unit.Utils
     {
         private static readonly Uri ValidUri = new Uri("http://server");
 
-        private HttpPublisher _uut;
+        private WiHttpPublisher _uut;
 
         [SetUp]
         public void SetUp()
         {
-            _uut = new HttpPublisher(ValidUri, TestEventCountPerUpload);
+            _uut = new WiHttpPublisher(ValidUri, TestEventCountPerUpload);
         }
 
         [Test]

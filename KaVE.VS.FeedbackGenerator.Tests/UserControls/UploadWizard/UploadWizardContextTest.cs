@@ -169,7 +169,7 @@ namespace KaVE.VS.FeedbackGenerator.Tests.UserControls.UploadWizard
 
             _mockExporter.Verify(
                 exporter =>
-                    exporter.Export(It.IsAny<DateTimeOffset>(), It.IsAny<HttpPublisher>()));
+                    exporter.Export(It.IsAny<DateTimeOffset>(), It.IsAny<WiHttpPublisher>()));
         }
 
         [Test]
@@ -184,11 +184,11 @@ namespace KaVE.VS.FeedbackGenerator.Tests.UserControls.UploadWizard
                             It.IsAny<Action>()))
                 .Returns((IEnumerable<IDEEvent> events, Stream stream, Action action) => events.Any());
 
-            HttpPublisher httpPublisher = null;
+            WiHttpPublisher httpPublisher = null;
             _mockExporter
-                .Setup(exporter => exporter.Export(It.IsAny<DateTimeOffset>(), It.IsAny<HttpPublisher>()))
+                .Setup(exporter => exporter.Export(It.IsAny<DateTimeOffset>(), It.IsAny<WiHttpPublisher>()))
                 .Callback<DateTimeOffset, IPublisher>(
-                    (exportTime, publisher) => httpPublisher = (HttpPublisher) publisher);
+                    (exportTime, publisher) => httpPublisher = (WiHttpPublisher) publisher);
 
             WhenExportIsExecuted(UploadWizardControl.ExportType.HttpUpload);
             try

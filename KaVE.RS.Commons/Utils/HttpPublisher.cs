@@ -26,14 +26,14 @@ using KaVE.VS.Commons;
 
 namespace KaVE.RS.Commons.Utils
 {
-    public class HttpPublisher : IPublisher
+    public class WiHttpPublisher : IPublisher
     {
         private readonly int _eventCountPerUpload;
         private readonly Uri _hostAddress;
         private readonly IIoUtils _ioUtils;
         private readonly IPublisherUtils _publisherUtils;
 
-        public HttpPublisher([NotNull] Uri hostAddress, int eventCountPerUpload = 1000)
+        public WiHttpPublisher([NotNull] Uri hostAddress, int eventCountPerUpload = 1000)
         {
             _hostAddress = hostAddress;
             _ioUtils = Registry.GetComponent<IIoUtils>();
