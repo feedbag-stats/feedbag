@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KaVE.RS.Commons.Tests_Unit"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KaVE.VS.Dashboard.Tests", "KaVE.VS.Dashboard.Tests\KaVE.VS.Dashboard.Tests.csproj", "{207ECD8D-D426-49BA-B7F7-12FAE9DCD735}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KaVE.VS.Dashboard", "..\Dashboard-ToolBar-Items\Dashboard\Dashboard\KaVE.VS.Dashboard.csproj", "{805DB3C4-265D-4508-A50D-2D5D4122A9A4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KaVE.VS.Dashboard", "Dashboard\KaVE.VS.Dashboard.csproj", "{805DB3C4-265D-4508-A50D-2D5D4122A9A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

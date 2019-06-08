@@ -63,7 +63,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Dashboard-ToolBar-Items\Dashboard\Dashboard\KaVE.VS.Dashboard.csproj">
+    <ProjectReference Include="..\Dashboard\KaVE.VS.Dashboard.csproj">
       <Project>{805db3c4-265d-4508-a50d-2d5d4122a9a4}</Project>
       <Name>KaVE.VS.Dashboard</Name>
     </ProjectReference>
