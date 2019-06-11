@@ -6,7 +6,7 @@ namespace Dashboard
 {
     public partial class DashboardSettingsForm : Form
     { 
-        private readonly dynamic _myPrivacySettingJson = new JObject();
+        private dynamic _myPrivacySettingJson = new JObject();
         private string _myCurrentSolutionId = "0";
         private dynamic _myDefaultPrivacySettingsJson = new JObject();
 
@@ -50,11 +50,11 @@ namespace Dashboard
 
         public void EnableCheckBoxDependingOnSelection(JObject selectedSettings)
         {
-            this.checkBox10.Checked = (bool)selectedSettings["Enabled"];
-            if (this.checkBox10.Checked)
+            this.checkBoxEnableDataCollection.Checked = (bool)selectedSettings["Enabled"];
+            if (this.checkBoxEnableDataCollection.Checked)
             {
                 this.checkBoxResearchGenericInteraction.Enabled = true;
-                this.checkBox2ResearchProjectSpecific.Enabled = true;
+                this.checkBoxResearchProjectSpecific.Enabled = true;
                 this.checkBoxResearchSourceCode.Enabled = true;
                 this.checkBoxOpenDataSourceCode.Enabled = true;
                 this.checkBoxOpenDataProjectSpecific.Enabled = true;
@@ -63,7 +63,7 @@ namespace Dashboard
             else
             {
                 this.checkBoxResearchGenericInteraction.Enabled = false;
-                this.checkBox2ResearchProjectSpecific.Enabled = false;
+                this.checkBoxResearchProjectSpecific.Enabled = false;
                 this.checkBoxResearchSourceCode.Enabled = false;
                 this.checkBoxOpenDataSourceCode.Enabled = false;
                 this.checkBoxOpenDataProjectSpecific.Enabled = false;
@@ -74,7 +74,7 @@ namespace Dashboard
         public void CheckCheckBoxesAccodingToSelection(JObject selectedSettings)
         {
             this.checkBoxResearchGenericInteraction.Checked = (bool)selectedSettings["ResearchGenericInteraction"];
-            this.checkBox2ResearchProjectSpecific.Checked = (bool)selectedSettings["ResearchProjectSpecific"];
+            this.checkBoxResearchProjectSpecific.Checked = (bool)selectedSettings["ResearchProjectSpecific"];
             this.checkBoxResearchSourceCode.Checked = (bool)selectedSettings["ResearchSourceCode"];
             this.checkBoxOpenDataSourceCode.Checked = (bool)selectedSettings["OpenDataSourceCode"];
             this.checkBoxOpenDataProjectSpecific.Checked = (bool)selectedSettings["OpenDataProjectSpecific"];
@@ -92,24 +92,14 @@ namespace Dashboard
             }
             catch (Exception)
             { }
-        }
-
-        public void SetCombobox(ComboBox newComboBox)
-        {
-            this.comboBox1 = newComboBox;
-        }
-
-        public JObject GetPrivacySettingJson()
-        {
-            return _myPrivacySettingJson;
-        }
+        }    
 
         public void InitializePrivacySettingsJObject()
         {
-            var mySolutions = this.comboBox1.Items;
+            var mySolutions = this.comboBoxSolutions.Items;
 
             // change combobox text to name of first solution
-            this.comboBox1.Text = mySolutions[0].ToString();
+            this.comboBoxSolutions.Text = mySolutions[0].ToString();
             
             int id = 0;
             //initialize privacy settings JObject
@@ -139,7 +129,7 @@ namespace Dashboard
 
 
         // create and return a Json Object with the given content
-        public void AddPrivacyJson(string solutionSelectionId, string solutionName, bool enabledSettingsForSolution, 
+        /*public void AddPrivacyJson(string solutionSelectionId, string solutionName, bool enabledSettingsForSolution, 
             bool researchGenericInteraction, bool researchProjectSpecific, bool researchSourceCode,
             bool openDataGenericInteraction, bool openDataProjectSpecific, bool openDataSourceCode)
         {
@@ -177,89 +167,82 @@ namespace Dashboard
             }
 
             _myPrivacySettingJson.SolutionSelectionId = privacySettings;
-        }
+        }*/
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void checkBoxResearchGenericInteraction_CheckedChanged(object sender, EventArgs e)
         {
-           _myPrivacySettingJson[_myCurrentSolutionId]["ResearchGenericInteraction"] = this.checkBoxResearchGenericInteraction.Checked;
-            // if you uncheck open data, you automatically uncheck research 
+            _myPrivacySettingJson[_myCurrentSolutionId]["ResearchGenericInteraction"] = this.checkBoxResearchGenericInteraction.Checked;
+            // if you uncheck research, you automatically uncheck open data 
             if (!this.checkBoxResearchGenericInteraction.Checked)
             {
-                _myPrivacySettingJson[_myCurrentSolutionId]["OpenDatahGenericInteraction"] = this.checkBoxResearchGenericInteraction.Checked;
+                _myPrivacySettingJson[_myCurrentSolutionId]["OpenDataGenericInteraction"] = this.checkBoxResearchGenericInteraction.Checked;
                 this.checkBoxOpenDataGenericInteraction.Checked = false;
             }
         }
 
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        private void checkBoxResearchProjectSpecific_CheckedChanged(object sender, EventArgs e)
         {
-            _myPrivacySettingJson[_myCurrentSolutionId]["ResearchProjectSpecific"] = this.checkBox2ResearchProjectSpecific.Checked;
-            // if you uncheck open data, you automatically uncheck research 
-            if (!this.checkBox2ResearchProjectSpecific.Checked)
+            _myPrivacySettingJson[_myCurrentSolutionId]["ResearchProjectSpecific"] = this.checkBoxResearchProjectSpecific.Checked;
+            // if you uncheck research, you automatically uncheck open data 
+            if (!this.checkBoxResearchProjectSpecific.Checked)
             {
-                _myPrivacySettingJson[_myCurrentSolutionId]["OpenDataProjectSpecific"] = this.checkBox2ResearchProjectSpecific.Checked;
+                _myPrivacySettingJson[_myCurrentSolutionId]["OpenDataProjectSpecific"] = this.checkBoxResearchProjectSpecific.Checked;
                 this.checkBoxOpenDataProjectSpecific.Checked = false;
             }
-        }
 
-        // cancle button
-        private void button2_Click(object sender, EventArgs e)
+        }
+        
+        private void buttonCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        // save button
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonSave_Click(object sender, EventArgs e)
         {
             //TODO: send Jarray to server
 
             this.Close();
-
         }
 
-        // feedback only, generic interaction data
-        private void checkBox6_CheckedChanged(object sender, EventArgs e)
+        private void checkBoxFeedBagOnlyGenericInteraction_CheckedChanged(object sender, EventArgs e)
         {
 
         }
 
-        // feedback only
-        private void checkBox5_CheckedChanged(object sender, EventArgs e)
+        private void checkBoxFeedBagOnlyProjectSpecific_CheckedChanged(object sender, EventArgs e)
         {
 
         }
 
-        private bool myCheckBox10Checked = false;
-        private void checkBox10_CheckedChanged(object sender, EventArgs e)
+        private bool _myCheckBoxEnableDataCollectionChecked = false;
+        private void checkBoxEnableDataCollection_CheckedChanged(object sender, EventArgs e)
         {
-
-            if (!myCheckBox10Checked)
+            if (!_myCheckBoxEnableDataCollectionChecked)
             {
                 this.checkBoxResearchGenericInteraction.Enabled = true;
-                this.checkBox2ResearchProjectSpecific.Enabled = true;
+                this.checkBoxResearchProjectSpecific.Enabled = true;
                 this.checkBoxResearchSourceCode.Enabled = true;
                 this.checkBoxOpenDataSourceCode.Enabled = true;
                 this.checkBoxOpenDataProjectSpecific.Enabled = true;
                 this.checkBoxOpenDataGenericInteraction.Enabled = true;
-                myCheckBox10Checked = true;
+                _myCheckBoxEnableDataCollectionChecked = true;
 
             }
             else
             {
                 this.checkBoxResearchGenericInteraction.Enabled = false;
-                this.checkBox2ResearchProjectSpecific.Enabled = false;
+                this.checkBoxResearchProjectSpecific.Enabled = false;
                 this.checkBoxResearchSourceCode.Enabled = false;
                 this.checkBoxOpenDataSourceCode.Enabled = false;
                 this.checkBoxOpenDataProjectSpecific.Enabled = false;
                 this.checkBoxOpenDataGenericInteraction.Enabled = false;
-                myCheckBox10Checked = false;
+                _myCheckBoxEnableDataCollectionChecked = false;
 
             }
-            _myPrivacySettingJson[_myCurrentSolutionId]["Enabled"] = myCheckBox10Checked;
-
+            _myPrivacySettingJson[_myCurrentSolutionId]["Enabled"] = _myCheckBoxEnableDataCollectionChecked;
         }
 
-        // feedback only
-        private void checkBox4_CheckedChanged(object sender, EventArgs e)
+        private void checkBoxFeedBagOnlySourceCode_CheckedChanged(object sender, EventArgs e)
         {
 
         }
@@ -279,19 +262,17 @@ namespace Dashboard
 
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
+        private void comboBoxSolutions_SelectedIndexChanged(object sender, EventArgs e)
+        {
             // get selected item of combobox
-            int selectedIndex = comboBox1.SelectedIndex;
+            int selectedIndex = comboBoxSolutions.SelectedIndex;
             this._myCurrentSolutionId = selectedIndex.ToString();
 
             LoadSettingsForSolution(selectedIndex.ToString());
-
-         
         }
 
-        private void LoadSettingsForSolution(string solutionSettingsId)
+        public void LoadSettingsForSolution(string solutionSettingsId)
         {
             JObject selectedSettings = _myPrivacySettingJson[solutionSettingsId];
             try
@@ -334,7 +315,7 @@ namespace Dashboard
             if (this.checkBoxOpenDataProjectSpecific.Checked)
             {
                 _myPrivacySettingJson[_myCurrentSolutionId]["ResearchProjectSpecific"] = this.checkBoxOpenDataProjectSpecific.Checked;
-                this.checkBox2ResearchProjectSpecific.Checked = true;
+                this.checkBoxResearchProjectSpecific.Checked = true;
             }
             
         }
@@ -352,8 +333,6 @@ namespace Dashboard
 
         }
 
-       
-
         private void SaveDefaultSettingsButton_Click(object sender, EventArgs e)
         {
             SaveDefaultSettings();
@@ -368,7 +347,88 @@ namespace Dashboard
         {
 
         }
-    }
 
-    //test comment
+        //Getter and Setter// 
+
+        public void SetPrivacySettingsJOject(JObject newPrivacySettingsJObject)
+        {
+            this._myPrivacySettingJson = newPrivacySettingsJObject;
+        }
+
+        public JObject GetDefaultPrivacySettingsJobject()
+        {
+            return _myDefaultPrivacySettingsJson;
+        }
+
+        public JObject GetPrivacySettingJson()
+        {
+            return _myPrivacySettingJson;
+        }
+
+        public CheckBox GetCheckBoxFeedBagOnlyGenericInteraction()
+        {
+            return this.checkBoxFeedBagOnlyGenericInteraction;
+        }
+
+        public CheckBox GetCheckBoxFeedBagOnlyProjectSpecific()
+        {
+            return this.checkBoxFeedBagOnlyProjectSpecific;
+        }
+
+        public CheckBox GetCheckBoxFeedBagOnlySourceCode()
+        {
+            return this.checkBoxFeedBagOnlySourceCode;
+        }
+
+        public CheckBox GetCheckBoxResearchGenericInteraction()
+        {
+            return this.checkBoxResearchGenericInteraction;
+        }
+
+        public CheckBox GetCheckBoxResearchProjectSpecific()
+        {
+            return this.checkBoxResearchProjectSpecific;
+        }
+
+        public CheckBox GetCheckBoxResearchSourceCode()
+        {
+            return this.checkBoxResearchSourceCode;
+        }
+
+        public CheckBox GetCheckBoxOpenDataSourceCode()
+        {
+            return this.checkBoxOpenDataSourceCode;
+        }
+
+        public CheckBox GetCheckBoxOpenDataProjectSpecific()
+        {
+            return this.checkBoxOpenDataProjectSpecific;
+        }
+
+        public CheckBox GetCheckBoxOpenDataGenericInteraction()
+        {
+            return this.checkBoxOpenDataGenericInteraction;
+        }
+
+        public CheckBox GetCheckBoxEnableDataCollection()
+        {
+            return this.checkBoxEnableDataCollection;
+        }
+
+        public void SetCurrentPrivacySettingsJObjectId(string newId)
+        {
+            _myCurrentSolutionId = newId;
+        }
+
+        public void SetDefaultPrivacySettingsJObject(JObject newJObject)
+        {
+            _myDefaultPrivacySettingsJson = newJObject;
+        }
+
+        public void SetCombobox(ComboBox newComboBox)
+        {
+            this.comboBoxSolutions = newComboBox;
+        }
+
+    }
 }

@@ -44,18 +44,10 @@ namespace Dashboard
         /// </summary>
         private void InitializeComponent()
         {
-            this.checkBoxResearchGenericInteraction = new System.Windows.Forms.CheckBox();
-            this.checkBox2ResearchProjectSpecific = new System.Windows.Forms.CheckBox();
             this.checkBoxResearchSourceCode = new System.Windows.Forms.CheckBox();
-            this.checkBoxFeedBagOnlySourceCode = new System.Windows.Forms.CheckBox();
-            this.checkBoxFeedBagOnlyProjectSpecific = new System.Windows.Forms.CheckBox();
-            this.checkBoxFeedBagOnlyGenericInteraction = new System.Windows.Forms.CheckBox();
             this.checkBoxOpenDataSourceCode = new System.Windows.Forms.CheckBox();
             this.checkBoxOpenDataProjectSpecific = new System.Windows.Forms.CheckBox();
             this.checkBoxOpenDataGenericInteraction = new System.Windows.Forms.CheckBox();
-            this.checkBox10 = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -63,32 +55,18 @@ namespace Dashboard
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SaveDefaultSettingsButton = new System.Windows.Forms.Button();
             this.LoadDefaultSettingsButton = new System.Windows.Forms.Button();
+            this.checkBoxResearchGenericInteraction = new System.Windows.Forms.CheckBox();
+            this.checkBoxResearchProjectSpecific = new System.Windows.Forms.CheckBox();
+            this.checkBoxFeedBagOnlyGenericInteraction = new System.Windows.Forms.CheckBox();
+            this.checkBoxFeedBagOnlyProjectSpecific = new System.Windows.Forms.CheckBox();
+            this.checkBoxFeedBagOnlySourceCode = new System.Windows.Forms.CheckBox();
+            this.checkBoxEnableDataCollection = new System.Windows.Forms.CheckBox();
+            this.buttonCancel = new System.Windows.Forms.Button();
+            this.buttonSave = new System.Windows.Forms.Button();
+            this.comboBoxSolutions = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
-            // 
-            // checkBoxResearchGenericInteraction
-            // 
-            this.checkBoxResearchGenericInteraction.AutoSize = true;
-            this.checkBoxResearchGenericInteraction.Enabled = false;
-            this.checkBoxResearchGenericInteraction.Location = new System.Drawing.Point(424, 241);
-            this.checkBoxResearchGenericInteraction.Name = "checkBoxResearchGenericInteraction";
-            this.checkBoxResearchGenericInteraction.Size = new System.Drawing.Size(22, 21);
-            this.checkBoxResearchGenericInteraction.TabIndex = 1;
-            this.checkBoxResearchGenericInteraction.UseVisualStyleBackColor = true;
-            this.checkBoxResearchGenericInteraction.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
-            // checkBox2ResearchProjectSpecific
-            // 
-            this.checkBox2ResearchProjectSpecific.AutoSize = true;
-            this.checkBox2ResearchProjectSpecific.Enabled = false;
-            this.checkBox2ResearchProjectSpecific.Location = new System.Drawing.Point(424, 277);
-            this.checkBox2ResearchProjectSpecific.Name = "checkBox2ResearchProjectSpecific";
-            this.checkBox2ResearchProjectSpecific.Size = new System.Drawing.Size(22, 21);
-            this.checkBox2ResearchProjectSpecific.TabIndex = 2;
-            this.checkBox2ResearchProjectSpecific.UseVisualStyleBackColor = true;
-            this.checkBox2ResearchProjectSpecific.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // checkBoxResearchSourceCode
             // 
@@ -100,45 +78,6 @@ namespace Dashboard
             this.checkBoxResearchSourceCode.TabIndex = 3;
             this.checkBoxResearchSourceCode.UseVisualStyleBackColor = true;
             this.checkBoxResearchSourceCode.CheckedChanged += new System.EventHandler(this.checkBoxResearchSourceCode_CheckedChanged);
-            // 
-            // checkBoxFeedBagOnlySourceCode
-            // 
-            this.checkBoxFeedBagOnlySourceCode.AutoSize = true;
-            this.checkBoxFeedBagOnlySourceCode.Checked = true;
-            this.checkBoxFeedBagOnlySourceCode.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxFeedBagOnlySourceCode.Enabled = false;
-            this.checkBoxFeedBagOnlySourceCode.Location = new System.Drawing.Point(269, 313);
-            this.checkBoxFeedBagOnlySourceCode.Name = "checkBoxFeedBagOnlySourceCode";
-            this.checkBoxFeedBagOnlySourceCode.Size = new System.Drawing.Size(22, 21);
-            this.checkBoxFeedBagOnlySourceCode.TabIndex = 6;
-            this.checkBoxFeedBagOnlySourceCode.UseVisualStyleBackColor = true;
-            this.checkBoxFeedBagOnlySourceCode.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
-            // 
-            // checkBoxFeedBagOnlyProjectSpecific
-            // 
-            this.checkBoxFeedBagOnlyProjectSpecific.AutoSize = true;
-            this.checkBoxFeedBagOnlyProjectSpecific.Checked = true;
-            this.checkBoxFeedBagOnlyProjectSpecific.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxFeedBagOnlyProjectSpecific.Enabled = false;
-            this.checkBoxFeedBagOnlyProjectSpecific.Location = new System.Drawing.Point(269, 277);
-            this.checkBoxFeedBagOnlyProjectSpecific.Name = "checkBoxFeedBagOnlyProjectSpecific";
-            this.checkBoxFeedBagOnlyProjectSpecific.Size = new System.Drawing.Size(22, 21);
-            this.checkBoxFeedBagOnlyProjectSpecific.TabIndex = 5;
-            this.checkBoxFeedBagOnlyProjectSpecific.UseVisualStyleBackColor = true;
-            this.checkBoxFeedBagOnlyProjectSpecific.CheckedChanged += new System.EventHandler(this.checkBox5_CheckedChanged);
-            // 
-            // checkBoxFeedBagOnlyGenericInteraction
-            // 
-            this.checkBoxFeedBagOnlyGenericInteraction.AutoSize = true;
-            this.checkBoxFeedBagOnlyGenericInteraction.Checked = true;
-            this.checkBoxFeedBagOnlyGenericInteraction.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxFeedBagOnlyGenericInteraction.Enabled = false;
-            this.checkBoxFeedBagOnlyGenericInteraction.Location = new System.Drawing.Point(269, 241);
-            this.checkBoxFeedBagOnlyGenericInteraction.Name = "checkBoxFeedBagOnlyGenericInteraction";
-            this.checkBoxFeedBagOnlyGenericInteraction.Size = new System.Drawing.Size(22, 21);
-            this.checkBoxFeedBagOnlyGenericInteraction.TabIndex = 4;
-            this.checkBoxFeedBagOnlyGenericInteraction.UseVisualStyleBackColor = true;
-            this.checkBoxFeedBagOnlyGenericInteraction.CheckedChanged += new System.EventHandler(this.checkBox6_CheckedChanged);
             // 
             // checkBoxOpenDataSourceCode
             // 
@@ -172,37 +111,6 @@ namespace Dashboard
             this.checkBoxOpenDataGenericInteraction.TabIndex = 10;
             this.checkBoxOpenDataGenericInteraction.UseVisualStyleBackColor = true;
             this.checkBoxOpenDataGenericInteraction.CheckedChanged += new System.EventHandler(this.checkBoxOpenDataGenericInteraction_CheckedChanged);
-            // 
-            // checkBox10
-            // 
-            this.checkBox10.AutoSize = true;
-            this.checkBox10.Location = new System.Drawing.Point(28, 125);
-            this.checkBox10.Name = "checkBox10";
-            this.checkBox10.Size = new System.Drawing.Size(302, 24);
-            this.checkBox10.TabIndex = 16;
-            this.checkBox10.Text = "Enable data collection for this solution";
-            this.checkBox10.UseVisualStyleBackColor = true;
-            this.checkBox10.CheckedChanged += new System.EventHandler(this.checkBox10_CheckedChanged);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(702, 405);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 33);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "Save";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(621, 405);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 33);
-            this.button2.TabIndex = 19;
-            this.button2.Text = "Cancel";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label1
             // 
@@ -271,41 +179,6 @@ namespace Dashboard
             this.label7.Text = "Data Collection Settings for";
             this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
-            // comboBox1
-            // 
-
-            var solutions = JetBrains.Rider.Model.Solution.Read;
-            // var solutions = Registry.GetComponent<ISolutionName>();
-            // var solution = DTE.Solution.GetName();
-
-
-            /*var solutions = DTE.Solution.GetName();*/
-            /*DTE dte = new DTEClass();
-            var solutionEvents = dte.Events.SolutionEvents;
-            JetBrains.ProjectModel.SolutionsManager solutionMangager = new JetBrains.ProjectModel.SolutionsManager(null);
-            JetBrains.DataFlow.IViewable<JetBrains.ProjectModel.ISolution> solutions = solutionMangager.Solutions;*/
-            /*foreach (var solution in solutions)
-            {
-                this.comboBox1.Items.AddRange(new object[] {solution.ToString()});
-            }*/
-
-            this.comboBox1.AllowDrop = true;
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {solutions});
-
-            this.comboBox1.Items.AddRange(new object[] {
-            "Solution 1 ",
-            "Solution 2",
-            "Solution 3",
-            "Solution 4"});
-            this.comboBox1.Location = new System.Drawing.Point(432, 41);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(345, 45);
-            this.comboBox1.TabIndex = 28;
-            this.comboBox1.Text = "Solution";
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
             // SaveDefaultSettingsButton
             // 
             this.SaveDefaultSettingsButton.Location = new System.Drawing.Point(215, 405);
@@ -326,6 +199,115 @@ namespace Dashboard
             this.LoadDefaultSettingsButton.UseVisualStyleBackColor = true;
             this.LoadDefaultSettingsButton.Click += new System.EventHandler(this.LoadDefaultSettingsButton_Click);
             // 
+            // checkBoxResearchGenericInteraction
+            // 
+            this.checkBoxResearchGenericInteraction.AutoSize = true;
+            this.checkBoxResearchGenericInteraction.Enabled = false;
+            this.checkBoxResearchGenericInteraction.Location = new System.Drawing.Point(424, 241);
+            this.checkBoxResearchGenericInteraction.Name = "checkBoxResearchGenericInteraction";
+            this.checkBoxResearchGenericInteraction.Size = new System.Drawing.Size(22, 21);
+            this.checkBoxResearchGenericInteraction.TabIndex = 32;
+            this.checkBoxResearchGenericInteraction.UseVisualStyleBackColor = true;
+            this.checkBoxResearchGenericInteraction.CheckedChanged += new System.EventHandler(this.checkBoxResearchGenericInteraction_CheckedChanged);
+            // 
+            // checkBoxResearchProjectSpecific
+            // 
+            this.checkBoxResearchProjectSpecific.AutoSize = true;
+            this.checkBoxResearchProjectSpecific.Enabled = false;
+            this.checkBoxResearchProjectSpecific.Location = new System.Drawing.Point(424, 277);
+            this.checkBoxResearchProjectSpecific.Name = "checkBoxResearchProjectSpecific";
+            this.checkBoxResearchProjectSpecific.Size = new System.Drawing.Size(22, 21);
+            this.checkBoxResearchProjectSpecific.TabIndex = 34;
+            this.checkBoxResearchProjectSpecific.UseVisualStyleBackColor = true;
+            this.checkBoxResearchProjectSpecific.CheckedChanged += new System.EventHandler(this.checkBoxResearchProjectSpecific_CheckedChanged);
+            // 
+            // checkBoxFeedBagOnlyGenericInteraction
+            // 
+            this.checkBoxFeedBagOnlyGenericInteraction.AutoSize = true;
+            this.checkBoxFeedBagOnlyGenericInteraction.Checked = true;
+            this.checkBoxFeedBagOnlyGenericInteraction.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxFeedBagOnlyGenericInteraction.Enabled = false;
+            this.checkBoxFeedBagOnlyGenericInteraction.Location = new System.Drawing.Point(269, 241);
+            this.checkBoxFeedBagOnlyGenericInteraction.Name = "checkBoxFeedBagOnlyGenericInteraction";
+            this.checkBoxFeedBagOnlyGenericInteraction.Size = new System.Drawing.Size(22, 21);
+            this.checkBoxFeedBagOnlyGenericInteraction.TabIndex = 35;
+            this.checkBoxFeedBagOnlyGenericInteraction.UseVisualStyleBackColor = true;
+            this.checkBoxFeedBagOnlyGenericInteraction.CheckedChanged += new System.EventHandler(this.checkBoxFeedBagOnlyGenericInteraction_CheckedChanged);
+            // 
+            // checkBoxFeedBagOnlyProjectSpecific
+            // 
+            this.checkBoxFeedBagOnlyProjectSpecific.AutoSize = true;
+            this.checkBoxFeedBagOnlyProjectSpecific.Checked = true;
+            this.checkBoxFeedBagOnlyProjectSpecific.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxFeedBagOnlyProjectSpecific.Enabled = false;
+            this.checkBoxFeedBagOnlyProjectSpecific.Location = new System.Drawing.Point(269, 277);
+            this.checkBoxFeedBagOnlyProjectSpecific.Name = "checkBoxFeedBagOnlyProjectSpecific";
+            this.checkBoxFeedBagOnlyProjectSpecific.Size = new System.Drawing.Size(22, 21);
+            this.checkBoxFeedBagOnlyProjectSpecific.TabIndex = 36;
+            this.checkBoxFeedBagOnlyProjectSpecific.UseVisualStyleBackColor = true;
+            this.checkBoxFeedBagOnlyProjectSpecific.CheckedChanged += new System.EventHandler(this.checkBoxFeedBagOnlyProjectSpecific_CheckedChanged);
+            // 
+            // checkBoxFeedBagOnlySourceCode
+            // 
+            this.checkBoxFeedBagOnlySourceCode.AutoSize = true;
+            this.checkBoxFeedBagOnlySourceCode.Checked = true;
+            this.checkBoxFeedBagOnlySourceCode.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxFeedBagOnlySourceCode.Enabled = false;
+            this.checkBoxFeedBagOnlySourceCode.Location = new System.Drawing.Point(269, 313);
+            this.checkBoxFeedBagOnlySourceCode.Name = "checkBoxFeedBagOnlySourceCode";
+            this.checkBoxFeedBagOnlySourceCode.Size = new System.Drawing.Size(22, 21);
+            this.checkBoxFeedBagOnlySourceCode.TabIndex = 37;
+            this.checkBoxFeedBagOnlySourceCode.UseVisualStyleBackColor = true;
+            this.checkBoxFeedBagOnlySourceCode.CheckedChanged += new System.EventHandler(this.checkBoxFeedBagOnlySourceCode_CheckedChanged);
+            // 
+            // checkBoxEnableDataCollection
+            // 
+            this.checkBoxEnableDataCollection.AutoSize = true;
+            this.checkBoxEnableDataCollection.Location = new System.Drawing.Point(28, 121);
+            this.checkBoxEnableDataCollection.Name = "checkBoxEnableDataCollection";
+            this.checkBoxEnableDataCollection.Size = new System.Drawing.Size(302, 24);
+            this.checkBoxEnableDataCollection.TabIndex = 38;
+            this.checkBoxEnableDataCollection.Text = "Enable data collection for this solution";
+            this.checkBoxEnableDataCollection.UseVisualStyleBackColor = true;
+            this.checkBoxEnableDataCollection.CheckedChanged += new System.EventHandler(this.checkBoxEnableDataCollection_CheckedChanged);
+            // 
+            // buttonCancel
+            // 
+            this.buttonCancel.Location = new System.Drawing.Point(621, 405);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(75, 33);
+            this.buttonCancel.TabIndex = 39;
+            this.buttonCancel.Text = "Cancel";
+            this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            // 
+            // buttonSave
+            // 
+            this.buttonSave.Location = new System.Drawing.Point(702, 405);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(75, 33);
+            this.buttonSave.TabIndex = 40;
+            this.buttonSave.Text = "Save";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            // 
+            // comboBoxSolutions
+            // 
+            this.comboBoxSolutions.AllowDrop = true;
+            this.comboBoxSolutions.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxSolutions.FormattingEnabled = true;
+            this.comboBoxSolutions.Items.AddRange(new object[] {
+            "Solution 1 ",
+            "Solution 2",
+            "Solution 3",
+            "Solution 4"});
+            this.comboBoxSolutions.Location = new System.Drawing.Point(424, 41);
+            this.comboBoxSolutions.Name = "comboBoxSolutions";
+            this.comboBoxSolutions.Size = new System.Drawing.Size(345, 45);
+            this.comboBoxSolutions.TabIndex = 41;
+            this.comboBoxSolutions.Text = "Solution";
+            this.comboBoxSolutions.SelectedIndexChanged += new System.EventHandler(this.comboBoxSolutions_SelectedIndexChanged);
+            // 
             // DashboardSettingsForm
             // 
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
@@ -334,9 +316,17 @@ namespace Dashboard
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.comboBoxSolutions);
+            this.Controls.Add(this.buttonSave);
+            this.Controls.Add(this.buttonCancel);
+            this.Controls.Add(this.checkBoxEnableDataCollection);
+            this.Controls.Add(this.checkBoxFeedBagOnlySourceCode);
+            this.Controls.Add(this.checkBoxFeedBagOnlyProjectSpecific);
+            this.Controls.Add(this.checkBoxFeedBagOnlyGenericInteraction);
+            this.Controls.Add(this.checkBoxResearchProjectSpecific);
+            this.Controls.Add(this.checkBoxResearchGenericInteraction);
             this.Controls.Add(this.LoadDefaultSettingsButton);
             this.Controls.Add(this.SaveDefaultSettingsButton);
-            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -344,18 +334,10 @@ namespace Dashboard
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.checkBox10);
             this.Controls.Add(this.checkBoxOpenDataSourceCode);
             this.Controls.Add(this.checkBoxOpenDataProjectSpecific);
             this.Controls.Add(this.checkBoxOpenDataGenericInteraction);
-            this.Controls.Add(this.checkBoxFeedBagOnlySourceCode);
-            this.Controls.Add(this.checkBoxFeedBagOnlyProjectSpecific);
-            this.Controls.Add(this.checkBoxFeedBagOnlyGenericInteraction);
             this.Controls.Add(this.checkBoxResearchSourceCode);
-            this.Controls.Add(this.checkBox2ResearchProjectSpecific);
-            this.Controls.Add(this.checkBoxResearchGenericInteraction);
             this.Name = "DashboardSettingsForm";
             this.Text = "Dashboard Privacy Settings";
             this.Load += new System.EventHandler(this.DashboardSettingsForm_Load);
@@ -365,18 +347,10 @@ namespace Dashboard
         }
 
         #endregion
-        private System.Windows.Forms.CheckBox checkBoxResearchGenericInteraction;
-        private System.Windows.Forms.CheckBox checkBox2ResearchProjectSpecific;
         private System.Windows.Forms.CheckBox checkBoxResearchSourceCode;
-        private System.Windows.Forms.CheckBox checkBoxFeedBagOnlySourceCode;
-        private System.Windows.Forms.CheckBox checkBoxFeedBagOnlyProjectSpecific;
-        private System.Windows.Forms.CheckBox checkBoxFeedBagOnlyGenericInteraction;
         private System.Windows.Forms.CheckBox checkBoxOpenDataSourceCode;
         private System.Windows.Forms.CheckBox checkBoxOpenDataProjectSpecific;
         private System.Windows.Forms.CheckBox checkBoxOpenDataGenericInteraction;
-        private System.Windows.Forms.CheckBox checkBox10;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -384,8 +358,16 @@ namespace Dashboard
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button SaveDefaultSettingsButton;
         private System.Windows.Forms.Button LoadDefaultSettingsButton;
+        private System.Windows.Forms.CheckBox checkBoxResearchGenericInteraction;
+        private System.Windows.Forms.CheckBox checkBoxResearchProjectSpecific;
+        private System.Windows.Forms.CheckBox checkBoxFeedBagOnlyGenericInteraction;
+        private System.Windows.Forms.CheckBox checkBoxFeedBagOnlyProjectSpecific;
+        private System.Windows.Forms.CheckBox checkBoxFeedBagOnlySourceCode;
+        private System.Windows.Forms.CheckBox checkBoxEnableDataCollection;
+        private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.ComboBox comboBoxSolutions;
     }
 }
