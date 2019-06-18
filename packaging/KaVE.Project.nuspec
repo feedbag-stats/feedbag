@@ -16,7 +16,7 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
 
         <dependencies>
-            <dependency id="Wave" version="[11.0]" />
+            <dependency id="Wave" version="[12.0]" />
         </dependencies>
     </metadata>
     <files>

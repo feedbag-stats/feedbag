@@ -1,7 +1,9 @@
 ﻿using System.Collections;
+using System.IO;
 using JetBrains.IDE.SolutionBuilders;
 using JetBrains.ReSharper.Psi.Resx.Utils;
 using KaVE.Commons.Model.Naming.Impl.v0.IDEComponents;
+using Microsoft.VisualStudio.Shell;
 
 namespace Dashboard
 {
@@ -293,14 +295,21 @@ namespace Dashboard
             // 
             // comboBoxSolutions
             // 
+
+            // get path to current solution
+            //DTE dte = (DTE)ServiceProvider.GlobalProvider.GetService(typeof(DTE));
+            DTE dte = (EnvDTE.DTE)System.Runtime.InteropServices.Marshal.GetActiveObject("VisualStudio.DTE");
+            string solutionDir = dte.Solution.FullName;
+
             this.comboBoxSolutions.AllowDrop = true;
             this.comboBoxSolutions.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxSolutions.FormattingEnabled = true;
-            this.comboBoxSolutions.Items.AddRange(new object[] {
+            /*this.comboBoxSolutions.Items.AddRange(new object[] {
             "Solution 1 ",
             "Solution 2",
             "Solution 3",
-            "Solution 4"});
+            "Solution 4"});*/
+            this.comboBoxSolutions.Items.AddRange(new object[] {solutionDir});
             this.comboBoxSolutions.Location = new System.Drawing.Point(424, 41);
             this.comboBoxSolutions.Name = "comboBoxSolutions";
             this.comboBoxSolutions.Size = new System.Drawing.Size(345, 45);
