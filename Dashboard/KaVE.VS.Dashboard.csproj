@@ -192,7 +192,8 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="KaVE.Commons, Version=0.0.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\feedbag\packages\KaVE.Commons.0.0.9\lib\KaVE.Commons.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\KaVE.Commons.1.0.0\bin\Debug\KaVE.Commons.dll</HintPath>
     </Reference>
     <Reference Include="KaVE.VS.Commons, Version=0.0.9.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\feedbag\packages\KaVE.VS.Commons.0.0.9\lib\KaVE.VS.Commons.dll</HintPath>
@@ -428,13 +429,13 @@
     <Analyzer Include="..\packages\Microsoft.VisualStudio.Threading.Analyzers.15.8.122\analyzers\cs\Microsoft.VisualStudio.Threading.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\feedbag\KaVE.RS.Commons\KaVE.RS.Commons.csproj">
-      <Project>{b2235734-d3e5-498f-87e2-e9780dbe0d8d}</Project>
-      <Name>KaVE.RS.Commons</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\feedbag\KaVE.VS.FeedbackGenerator\KaVE.VS.FeedbackGenerator.csproj">
       <Project>{42ce1875-df5b-4d9e-adc4-47a96c06ef66}</Project>
       <Name>KaVE.VS.FeedbackGenerator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KaVE.RS.Commons\KaVE.RS.Commons.csproj">
+      <Project>{B2235734-D3E5-498F-87E2-E9780DBE0D8D}</Project>
+      <Name>KaVE.RS.Commons</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

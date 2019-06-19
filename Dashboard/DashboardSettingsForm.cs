@@ -1,5 +1,13 @@
 ﻿using System;
 using System.Windows.Forms;
+using KaVE.Commons.Model.Events.Enums;
+using KaVE.Commons.Model.Events.UserProfiles;
+using KaVE.Commons.Utils;
+using KaVE.RS.Commons.Settings;
+using KaVE.VS.Commons;
+using KaVE.VS.Commons.Generators;
+using KaVE.VS.FeedbackGenerator.Generators;
+using KaVE.VS.FeedbackGenerator.Settings.ExportSettingsSuite;
 using Newtonsoft.Json.Linq;
 
 namespace Dashboard
@@ -199,8 +207,34 @@ namespace Dashboard
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            //TODO: send Jarray to server
+            var privacySettings = new DashboardPrivacySettings
+            {
+                SharingDataEnabled = _myPrivacySettingJson[_myCurrentSolutionId]["Enabled"],
 
+                SharingGenericInteractionDataForFeedBagOnlyEnabled = _myPrivacySettingJson[_myCurrentSolutionId]["FeedBagGenericInteraction"],
+                SharingGenericInteractionDataForResearchEnabled = _myPrivacySettingJson[_myCurrentSolutionId]["ResearchGenericInteraction"],
+                SharingGenericInteractionDataForOpenDataSetEnabled = _myPrivacySettingJson[_myCurrentSolutionId]["OpenDataGenericInteraction"],
+
+                SharingProjectSpecificDataForFeedBagOnlyEnabled = _myPrivacySettingJson[_myCurrentSolutionId]["FeedBagProjectSpecific"],
+                SharingProjectSpecificDataForResearchEnabled = _myPrivacySettingJson[_myCurrentSolutionId]["ResearchProjectSpecific"],
+                SharingProjectSpecificDataForOpenDataSetEnabled = _myPrivacySettingJson[_myCurrentSolutionId]["OpenDataProjectSpecific"],
+
+                SharingSourceCodeForFeedBagOnlyEnabled = _myPrivacySettingJson[_myCurrentSolutionId]["FeedBagSourceCode"],
+                SharingSourceCodeForResearchEnabled = _myPrivacySettingJson[_myCurrentSolutionId]["ResearchSourceCode"],
+                SharingSourceCodeForOpenDataSetEnabled = _myPrivacySettingJson[_myCurrentSolutionId]["OpenDataSourceCode"]
+                
+            };
+
+            // add the privacy stettings to the settings store
+            var settingsStore = Registry.GetComponent<SettingsStore>();
+            settingsStore.SetSettings<DashboardPrivacySettings>(privacySettings);
+
+            //TODO: replace the nulls with values
+            var sut = new UserProfileEventGenerator(null, null, null, settingsStore, null);
+
+            sut.CreateEvent();
+
+            // close the privacy settings windows
             this.Close();
         }
 

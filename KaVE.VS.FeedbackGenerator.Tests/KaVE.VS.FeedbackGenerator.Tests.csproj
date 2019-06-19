@@ -125,7 +125,8 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="KaVE.Commons, Version=0.0.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\KaVE.Commons.0.0.9\lib\KaVE.Commons.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\KaVE.Commons.1.0.0\bin\Debug\KaVE.Commons.dll</HintPath>
     </Reference>
     <Reference Include="KaVE.Commons.TestUtils, Version=0.0.9.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\KaVE.Commons.TestUtils.0.0.9\lib\KaVE.Commons.TestUtils.dll</HintPath>

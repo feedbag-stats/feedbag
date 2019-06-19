@@ -44,9 +44,11 @@ namespace KaVE.VS.FeedbackGenerator.Generators
             _settingsStore = settingsStore;
         }
 
+
         public UserProfileEvent CreateEvent()
         {
             var s = _settingsStore.GetSettings<UserProfileSettings>();
+            var dashboardSettings = _settingsStore.GetSettings<DashboardPrivacySettings>();
 
             var @event = Create<UserProfileEvent>();
 
@@ -70,6 +72,21 @@ namespace KaVE.VS.FeedbackGenerator.Generators
 
             @event.ProgrammingGeneral = s.ProgrammingGeneral;
             @event.ProgrammingCSharp = s.ProgrammingCSharp;
+
+            // dashboard privacy settings
+            @event.SharingDataEnabled = dashboardSettings.SharingDataEnabled;
+
+            @event.SharingGenericInteractionDataForFeedBagOnlyEnabled = dashboardSettings.SharingGenericInteractionDataForFeedBagOnlyEnabled;
+            @event.SharingGenericInteractionDataForResearchEnabled = dashboardSettings.SharingGenericInteractionDataForResearchEnabled;
+            @event.SharingGenericInteractionDataForOpenDataSetEnabled = dashboardSettings.SharingGenericInteractionDataForOpenDataSetEnabled;
+
+            @event.SharingProjectSpecificDataForFeedBagOnlyEnabled = dashboardSettings.SharingProjectSpecificDataForFeedBagOnlyEnabled;
+            @event.SharingProjectSpecificDataForResearchEnabled = dashboardSettings.SharingProjectSpecificDataForResearchEnabled;
+            @event.SharingProjectSpecificDataForOpenDataSetEnabled = dashboardSettings.SharingProjectSpecificDataForOpenDataSetEnabled;
+
+            @event.SharingSourceCodeForFeedBagOnlyEnabled = dashboardSettings.SharingSourceCodeForFeedBagOnlyEnabled;
+            @event.SharingSourceCodeForResearchEnabled = dashboardSettings.SharingSourceCodeForResearchEnabled;
+            @event.SharingSourceCodeForOpenDataSetEnabled = dashboardSettings.SharingSourceCodeForOpenDataSetEnabled;
 
             return @event;
         }
