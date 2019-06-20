@@ -48,16 +48,23 @@ namespace KaVE.RS.Commons.Utils
             var filename = _requestFileLocation();
             Asserts.Not(filename.IsNullOrEmpty(), Messages.NoFileGiven);
 
-            try
+            bool sharingDataEnabled = upe.SharingDataEnabled;
+
+            // only share data if it is allowed by the user
+            // otherwise, do nothing
+            if (sharingDataEnabled)
             {
-                using (var file = _ioUtils.OpenFile(filename, FileMode.Create, FileAccess.Write))
+                try
                 {
-                    _publisherUtils.WriteEventsToZipStream(events.Prepend(upe), file, progress);
+                    using (var file = _ioUtils.OpenFile(filename, FileMode.Create, FileAccess.Write))
+                    {
+                        _publisherUtils.WriteEventsToZipStream(events.Prepend(upe), file, progress);
+                    }
                 }
-            }
-            catch (Exception e)
-            {
-                Asserts.Fail(Messages.PublishingFileFailed, e.Message);
+                catch (Exception e)
+                {
+                    Asserts.Fail(Messages.PublishingFileFailed, e.Message);
+                }
             }
         }
     }

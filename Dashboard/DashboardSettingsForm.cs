@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
-using KaVE.Commons.Model.Events.Enums;
-using KaVE.Commons.Model.Events.UserProfiles;
-using KaVE.Commons.Utils;
 using KaVE.RS.Commons.Settings;
 using KaVE.VS.Commons;
-using KaVE.VS.Commons.Generators;
 using KaVE.VS.FeedbackGenerator.Generators;
-using KaVE.VS.FeedbackGenerator.Settings.ExportSettingsSuite;
 using Newtonsoft.Json.Linq;
 
 namespace Dashboard
@@ -52,8 +47,33 @@ namespace Dashboard
         public void SaveDefaultSettings()
         {
             _myDefaultPrivacySettingsJson = JObject.Parse(_myPrivacySettingJson[_myCurrentSolutionId].ToString());
-            
-            //TODO: Send Default settings to server
+
+            var privacyDefaultSettings = new DashboardDefaultPrivacySettings
+            {
+                SharingDataEnabled = _myDefaultPrivacySettingsJson["Enabled"],
+
+                SharingGenericInteractionDataForFeedBagOnlyEnabled = _myDefaultPrivacySettingsJson["FeedBagGenericInteraction"],
+                SharingGenericInteractionDataForResearchEnabled = _myDefaultPrivacySettingsJson["ResearchGenericInteraction"],
+                SharingGenericInteractionDataForOpenDataSetEnabled = _myDefaultPrivacySettingsJson["OpenDataGenericInteraction"],
+
+                SharingProjectSpecificDataForFeedBagOnlyEnabled = _myDefaultPrivacySettingsJson["FeedBagProjectSpecific"],
+                SharingProjectSpecificDataForResearchEnabled = _myDefaultPrivacySettingsJson["ResearchProjectSpecific"],
+                SharingProjectSpecificDataForOpenDataSetEnabled = _myDefaultPrivacySettingsJson["OpenDataProjectSpecific"],
+
+                SharingSourceCodeForFeedBagOnlyEnabled = _myDefaultPrivacySettingsJson["FeedBagSourceCode"],
+                SharingSourceCodeForResearchEnabled = _myDefaultPrivacySettingsJson["ResearchSourceCode"],
+                SharingSourceCodeForOpenDataSetEnabled = _myDefaultPrivacySettingsJson["OpenDataSourceCode"]
+
+            };
+
+            // add the privacy stettings to the settings store
+            var settingsStore = Registry.GetComponent<SettingsStore>();
+            settingsStore.SetSettings<DashboardDefaultPrivacySettings>(privacyDefaultSettings);
+
+            //FIXME: replace the nulls with values
+            var sut = new UserProfileEventGenerator(null, null, null, settingsStore, null);
+
+            //sut.CreateEvent();
         }
 
         public void EnableCheckBoxDependingOnSelection(JObject selectedSettings)
@@ -91,15 +111,59 @@ namespace Dashboard
 
         public void LoadDefaultSettingsForCurrentSolution()
         {
-            
-            //JObject selectedDefaultSettings = JObject.Parse(_myDefaultPrivacySettingsJson[_myCurrentSolutionId].ToString());
             try
             {
-                EnableCheckBoxDependingOnSelection(_myDefaultPrivacySettingsJson);
-                CheckCheckBoxesAccodingToSelection(_myDefaultPrivacySettingsJson);
+                var settingsStore = Registry.GetComponent<SettingsStore>();
+                DashboardDefaultPrivacySettings privacyDefaultSettings = settingsStore.GetSettings<DashboardDefaultPrivacySettings>();
+
+                if (privacyDefaultSettings.Equals(null))
+                {
+                    // take the locally saved default privacy setting
+                    try
+                    {
+                        EnableCheckBoxDependingOnSelection(_myDefaultPrivacySettingsJson);
+                        CheckCheckBoxesAccodingToSelection(_myDefaultPrivacySettingsJson);
+                    }
+                    catch (Exception) { }
+                }
+                else
+                {
+                    try
+                    {
+                        // otherwise load the default settings stored in the settings store
+                        dynamic privacyDefaultJObject = new JObject();
+                        privacyDefaultJObject.Solution = _myPrivacySettingJson[_myCurrentSolutionId]["Solution"];
+                        privacyDefaultJObject.Enabled = privacyDefaultSettings.SharingDataEnabled;
+
+                        privacyDefaultJObject.FeedBagGenericInteraction = privacyDefaultSettings.SharingGenericInteractionDataForFeedBagOnlyEnabled;
+                        privacyDefaultJObject.FeedBagProjectSpecific = privacyDefaultSettings.SharingProjectSpecificDataForFeedBagOnlyEnabled;
+                        privacyDefaultJObject.FeedBagSourceCode = privacyDefaultSettings.SharingSourceCodeForFeedBagOnlyEnabled;
+
+                        privacyDefaultJObject.ResearchGenericInteraction = privacyDefaultSettings.SharingGenericInteractionDataForResearchEnabled;
+                        privacyDefaultJObject.ResearchProjectSpecific = privacyDefaultSettings.SharingProjectSpecificDataForResearchEnabled;
+                        privacyDefaultJObject.ResearchSourceCode = privacyDefaultSettings.SharingSourceCodeForResearchEnabled;
+
+                        privacyDefaultJObject.OpenDataGenericInteraction = privacyDefaultSettings.SharingGenericInteractionDataForOpenDataSetEnabled;
+                        privacyDefaultJObject.OpenDataProjectSpecific = privacyDefaultSettings.SharingProjectSpecificDataForOpenDataSetEnabled;
+                        privacyDefaultJObject.OpenDataSourceCode = privacyDefaultSettings.SharingSourceCodeForOpenDataSetEnabled;
+
+                        EnableCheckBoxDependingOnSelection(privacyDefaultJObject);
+                        CheckCheckBoxesAccodingToSelection(privacyDefaultJObject);
+                    }
+                    catch (Exception) { }
+                }
             }
-            catch (Exception)
-            { }
+            catch (Exception )
+            {
+                // take the locally saved default privacy setting
+                try
+                {
+                    EnableCheckBoxDependingOnSelection(_myDefaultPrivacySettingsJson);
+                    CheckCheckBoxesAccodingToSelection(_myDefaultPrivacySettingsJson);
+                }
+                catch (Exception) { }
+            }
+            
         }    
 
         public void InitializePrivacySettingsJObject()
@@ -229,7 +293,7 @@ namespace Dashboard
             var settingsStore = Registry.GetComponent<SettingsStore>();
             settingsStore.SetSettings<DashboardPrivacySettings>(privacySettings);
 
-            //TODO: replace the nulls with values
+            //FIXME: replace the nulls with values
             var sut = new UserProfileEventGenerator(null, null, null, settingsStore, null);
 
             sut.CreateEvent();

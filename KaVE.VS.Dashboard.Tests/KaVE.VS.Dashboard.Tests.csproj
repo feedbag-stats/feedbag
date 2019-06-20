@@ -39,6 +39,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="KaVE.Commons">
+      <HintPath>..\packages\KaVE.Commons.1.0.0\bin\Debug\KaVE.Commons.dll</HintPath>
+    </Reference>
+    <Reference Include="KaVE.VS.Commons, Version=0.0.9.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\MSTest.TestFramework.1.3.2\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
     </Reference>
@@ -53,7 +57,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
-  <ItemGroup> 
+  <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DashboardSettingsFormTest.cs" />
   </ItemGroup>
@@ -65,6 +69,14 @@
     <ProjectReference Include="..\Dashboard\KaVE.VS.Dashboard.csproj">
       <Project>{805db3c4-265d-4508-a50d-2d5d4122a9a4}</Project>
       <Name>KaVE.VS.Dashboard</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KaVE.RS.Commons\KaVE.RS.Commons.csproj">
+      <Project>{B2235734-D3E5-498F-87E2-E9780DBE0D8D}</Project>
+      <Name>KaVE.RS.Commons</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KaVE.VS.FeedbackGenerator\KaVE.VS.FeedbackGenerator.csproj">
+      <Project>{42ce1875-df5b-4d9e-adc4-47a96c06ef66}</Project>
+      <Name>KaVE.VS.FeedbackGenerator</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

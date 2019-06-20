@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using Dashboard;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
+using KaVE.RS.Commons;
 
 namespace KaVE.VS.Dashboard.Tests
 {
@@ -266,6 +267,7 @@ namespace KaVE.VS.Dashboard.Tests
                 "'OpenDataProjectSpecific': false," +
                 "'OpenDataSourceCode': false" +
                 "}");
+
             _dashboardSettingsForm.SetDefaultPrivacySettingsJObject(defaultPrivacySettings);
 
             _dashboardSettingsForm.LoadDefaultSettingsForCurrentSolution();
