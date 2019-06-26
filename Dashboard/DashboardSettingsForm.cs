@@ -67,7 +67,7 @@ namespace Dashboard
             };
 
             // add the privacy stettings to the settings store
-            var settingsStore = Registry.GetComponent<SettingsStore>();
+            var settingsStore = Registry.GetComponent<ISettingsStore>();
             settingsStore.SetSettings<DashboardDefaultPrivacySettings>(privacyDefaultSettings);
 
             //FIXME: replace the nulls with values

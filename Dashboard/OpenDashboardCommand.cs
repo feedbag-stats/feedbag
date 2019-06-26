@@ -101,8 +101,7 @@ namespace Dashboard
                 OLEMSGBUTTON.OLEMSGBUTTON_OK,
                 OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);*/
          
-            // TODO: insert URL of Dashboard
-            System.Diagnostics.Process.Start("http://www.google.com");
+            System.Diagnostics.Process.Start("https://feedbag-stats-frontend.herokuapp.com");
         }
     }
 }
