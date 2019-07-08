@@ -64,7 +64,7 @@ namespace KaVE.RS.Commons.Tests_Unit.Utils
         }
 
         [Test]
-        public void AllSourceEventsArePublishedTogetherWithProfile()
+        public void AllSourceEventsArePublishedTogetherWithProfile_SharingEnabled()
         {
             var upe = new UserProfileEvent();
             upe.SharingDataEnabled = true;
@@ -79,7 +79,22 @@ namespace KaVE.RS.Commons.Tests_Unit.Utils
         }
 
         [Test]
-        public void ProgressCallsArePassedThrough()
+        public void AllSourceEventsArePublishedTogetherWithProfile_SharingNotEnabled()
+        {
+            var upe = new UserProfileEvent();
+            upe.SharingDataEnabled = false;
+            var testEvents = TestEventSource(10).ToList();
+
+            var uut = new FilePublisher(() => SomeTargetLocation);
+            uut.Publish(upe, testEvents, () => { });
+
+            Assert.AreEqual(0, _exportedPackages.Count);
+            // var exported = _exportedPackages.SelectMany(e => e).ToList();
+            // CollectionAssert.AreEqual(testEvents.Prepend(upe), exported);
+        }
+
+        [Test]
+        public void ProgressCallsArePassedThrough_Null()
         {   
             // if no privacy settings are defined, nothing is published
             const int expected = 0;
@@ -91,7 +106,19 @@ namespace KaVE.RS.Commons.Tests_Unit.Utils
         }
 
         [Test]
-        public void ProgressCallsArePassedThrough_2()
+        public void ProgressCallsArePassedThrough_NoPrivacySettings()
+        {
+            // if no privacy settings are defined, nothing is published
+            const int expected = 0;
+            var count = 0;
+            var uut = new FilePublisher(() => SomeTargetLocation);
+            uut.Publish(new UserProfileEvent {ProfileId = "p", SharingDataEnabled = false}, TestEventSource(expected), () => count++);
+            // +upe
+            Assert.AreEqual(expected, count);
+        }
+
+        [Test]
+        public void ProgressCallsArePassedThrough_WithPrivacySettings()
         {
             const int expected = 8;
             var count = 0;
