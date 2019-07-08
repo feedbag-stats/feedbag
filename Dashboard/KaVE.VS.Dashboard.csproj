@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\JetBrains.ReSharper.SDK.Tests.2018.1.0\build\JetBrains.ReSharper.SDK.Tests.props" Condition="Exists('..\packages\JetBrains.ReSharper.SDK.Tests.2018.1.0\build\JetBrains.ReSharper.SDK.Tests.props')" />
   <Import Project="..\..\..\feedbag\packages\JetBrains.ReSharper.SDK.Internal.112.0.20180414.74655\build\net45\JetBrains.ReSharper.SDK.Internal.props" Condition="Exists('..\..\..\feedbag\packages\JetBrains.ReSharper.SDK.Internal.112.0.20180414.74655\build\net45\JetBrains.ReSharper.SDK.Internal.props')" />
   <Import Project="..\..\..\feedbag\packages\JetBrains.Psi.Features.VisualStudio.112.0.20180414.70849\build\net46\JetBrains.Psi.Features.VisualStudio.props" Condition="Exists('..\..\..\feedbag\packages\JetBrains.Psi.Features.VisualStudio.112.0.20180414.70849\build\net46\JetBrains.Psi.Features.VisualStudio.props')" />
   <Import Project="..\..\..\feedbag\packages\JetBrains.Psi.Features.UIInteractive.Features.112.0.20180414.70849\build\net45\JetBrains.Psi.Features.UIInteractive.Features.props" Condition="Exists('..\..\..\feedbag\packages\JetBrains.Psi.Features.UIInteractive.Features.112.0.20180414.70849\build\net45\JetBrains.Psi.Features.UIInteractive.Features.props')" />
@@ -191,12 +192,17 @@
       <HintPath>..\..\..\feedbag\packages\JetBrains.Toolset.ScriptSourcesCompiler.Interface.1.0.20170420.0\lib\net\JetBrains.Toolset.ScriptSourcesCompiler.Interface.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
-    <Reference Include="KaVE.Commons, Version=0.0.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\KaVE.Commons.1.0.0\bin\Debug\KaVE.Commons.dll</HintPath>
+    <Reference Include="KaVE.Commons, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\KaVE.Commons.1.0.0-v20190107-110720\lib\KaVE.Commons.dll</HintPath>
     </Reference>
-    <Reference Include="KaVE.VS.Commons, Version=0.0.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\feedbag\packages\KaVE.VS.Commons.0.0.9\lib\KaVE.VS.Commons.dll</HintPath>
+    <Reference Include="KaVE.Commons.TestUtils, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\KaVE.Commons.TestUtils.1.0.0-v20190107-110720\lib\KaVE.Commons.TestUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="KaVE.VS.Commons, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\KaVE.VS.Commons.1.0.0-v20190107-110720\lib\KaVE.VS.Commons.dll</HintPath>
+    </Reference>
+    <Reference Include="KaVE.VS.Commons.TestUtils, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\KaVE.VS.Commons.TestUtils.1.0.0-v20190107-110720\lib\KaVE.VS.Commons.TestUtils.dll</HintPath>
     </Reference>
     <Reference Include="MahApps.Metro, Version=1.5.0.23, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
       <HintPath>..\..\..\feedbag\packages\JetBrains.MahApps.Metro.1.5.0.1\lib\net45\MahApps.Metro.dll</HintPath>
@@ -507,6 +513,7 @@
     <Error Condition="!Exists('..\..\..\feedbag\packages\JetBrains.Psi.Features.VisualStudio.112.0.20180414.70849\build\net46\JetBrains.Psi.Features.VisualStudio.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\feedbag\packages\JetBrains.Psi.Features.VisualStudio.112.0.20180414.70849\build\net46\JetBrains.Psi.Features.VisualStudio.targets'))" />
     <Error Condition="!Exists('..\..\..\feedbag\packages\JetBrains.ReSharper.SDK.Internal.112.0.20180414.74655\build\net45\JetBrains.ReSharper.SDK.Internal.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\feedbag\packages\JetBrains.ReSharper.SDK.Internal.112.0.20180414.74655\build\net45\JetBrains.ReSharper.SDK.Internal.props'))" />
     <Error Condition="!Exists('..\..\..\feedbag\packages\JetBrains.ReSharper.SDK.Internal.112.0.20180414.74655\build\net45\JetBrains.ReSharper.SDK.Internal.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\feedbag\packages\JetBrains.ReSharper.SDK.Internal.112.0.20180414.74655\build\net45\JetBrains.ReSharper.SDK.Internal.targets'))" />
+    <Error Condition="!Exists('..\packages\JetBrains.ReSharper.SDK.Tests.2018.1.0\build\JetBrains.ReSharper.SDK.Tests.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\JetBrains.ReSharper.SDK.Tests.2018.1.0\build\JetBrains.ReSharper.SDK.Tests.props'))" />
   </Target>
   <Import Project="..\packages\Microsoft.VisualStudio.Threading.Analyzers.15.8.122\build\Microsoft.VisualStudio.Threading.Analyzers.targets" Condition="Exists('..\packages\Microsoft.VisualStudio.Threading.Analyzers.15.8.122\build\Microsoft.VisualStudio.Threading.Analyzers.targets')" />
   <Import Project="..\packages\Microsoft.VisualStudio.SDK.Analyzers.15.8.33\build\Microsoft.VisualStudio.SDK.Analyzers.targets" Condition="Exists('..\packages\Microsoft.VisualStudio.SDK.Analyzers.15.8.33\build\Microsoft.VisualStudio.SDK.Analyzers.targets')" />

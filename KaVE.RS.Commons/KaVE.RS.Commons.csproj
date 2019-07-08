@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\JetBrains.ReSharper.SDK.Tests.2018.1.0\build\JetBrains.ReSharper.SDK.Tests.props" Condition="Exists('..\packages\JetBrains.ReSharper.SDK.Tests.2018.1.0\build\JetBrains.ReSharper.SDK.Tests.props')" />
   <Import Project="..\packages\JetBrains.ReSharper.SDK.Internal.112.0.20180414.74655\build\net45\JetBrains.ReSharper.SDK.Internal.props" Condition="Exists('..\packages\JetBrains.ReSharper.SDK.Internal.112.0.20180414.74655\build\net45\JetBrains.ReSharper.SDK.Internal.props')" />
   <Import Project="..\packages\JetBrains.Psi.Features.VisualStudio.112.0.20180414.70849\build\net45\JetBrains.Psi.Features.VisualStudio.props" Condition="Exists('..\packages\JetBrains.Psi.Features.VisualStudio.112.0.20180414.70849\build\net45\JetBrains.Psi.Features.VisualStudio.props')" />
   <Import Project="..\packages\JetBrains.Psi.Features.UIInteractive.Features.112.0.20180414.70849\build\net45\JetBrains.Psi.Features.UIInteractive.Features.props" Condition="Exists('..\packages\JetBrains.Psi.Features.UIInteractive.Features.112.0.20180414.70849\build\net45\JetBrains.Psi.Features.UIInteractive.Features.props')" />
@@ -74,6 +75,9 @@
     <Reference Include="Appccelerate.StateMachine, Version=3.3.0.0, Culture=neutral, PublicKeyToken=917bca444d1f2b4c, processorArchitecture=MSIL">
       <HintPath>..\packages\Appccelerate.StateMachine.3.3.0\lib\netstandard1.0\Appccelerate.StateMachine.dll</HintPath>
     </Reference>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.2.1\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
     <Reference Include="CookComputing.XmlRpcV2, Version=2.5.0.0, Culture=neutral, PublicKeyToken=a7d6e17aa302004d, processorArchitecture=MSIL">
       <HintPath>..\packages\xmlrpcnet.2.5.0\lib\net20\CookComputing.XmlRpcV2.dll</HintPath>
     </Reference>
@@ -116,12 +120,17 @@
       <Private>True</Private>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
-    <Reference Include="KaVE.Commons, Version=0.0.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\KaVE.Commons.1.0.0\bin\Debug\KaVE.Commons.dll</HintPath>
+    <Reference Include="KaVE.Commons, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\KaVE.Commons.1.0.0-v20190107-110720\lib\KaVE.Commons.dll</HintPath>
     </Reference>
-    <Reference Include="KaVE.VS.Commons, Version=0.0.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\KaVE.VS.Commons.0.0.9\lib\KaVE.VS.Commons.dll</HintPath>
+    <Reference Include="KaVE.Commons.TestUtils, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\KaVE.Commons.TestUtils.1.0.0-v20190107-110720\lib\KaVE.Commons.TestUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="KaVE.VS.Commons, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\KaVE.VS.Commons.1.0.0-v20190107-110720\lib\KaVE.VS.Commons.dll</HintPath>
+    </Reference>
+    <Reference Include="KaVE.VS.Commons.TestUtils, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\KaVE.VS.Commons.TestUtils.1.0.0-v20190107-110720\lib\KaVE.VS.Commons.TestUtils.dll</HintPath>
     </Reference>
     <Reference Include="MahApps.Metro, Version=1.5.0.23, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
       <HintPath>..\packages\JetBrains.MahApps.Metro.1.5.0.1\lib\net45\MahApps.Metro.dll</HintPath>
@@ -165,6 +174,9 @@
     </Reference>
     <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Windows7APICodePack.JetBrains.Stripped.1.1.20150225.0\lib\Net\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq, Version=4.7.142.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.7.142\lib\net45\Moq.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -240,6 +252,7 @@
     <Reference Include="System" />
     <Reference Include="System.Collections.Concurrent" />
     <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Globalization" />
@@ -327,6 +340,7 @@
     <Compile Include="Settings\ModelStoreSettings.cs" />
     <Compile Include="Settings\SettingsStore.cs" />
     <Compile Include="Settings\UserProfileSettings.cs" />
+    <Compile Include="Settings\DashboardPrivacySettingsSettingsUtils.cs" />
     <Compile Include="Settings\UserProfileSettingsUtils.cs" />
     <Compile Include="Utils\BackgroundWorker.cs" />
     <Compile Include="Utils\CallbackManager.cs" />
@@ -422,6 +436,7 @@
     <Error Condition="!Exists('..\packages\JetBrains.Psi.Features.VisualStudio.112.0.20180414.70849\build\net45\JetBrains.Psi.Features.VisualStudio.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\JetBrains.Psi.Features.VisualStudio.112.0.20180414.70849\build\net45\JetBrains.Psi.Features.VisualStudio.targets'))" />
     <Error Condition="!Exists('..\packages\JetBrains.ReSharper.SDK.Internal.112.0.20180414.74655\build\net45\JetBrains.ReSharper.SDK.Internal.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\JetBrains.ReSharper.SDK.Internal.112.0.20180414.74655\build\net45\JetBrains.ReSharper.SDK.Internal.props'))" />
     <Error Condition="!Exists('..\packages\JetBrains.ReSharper.SDK.Internal.112.0.20180414.74655\build\net45\JetBrains.ReSharper.SDK.Internal.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\JetBrains.ReSharper.SDK.Internal.112.0.20180414.74655\build\net45\JetBrains.ReSharper.SDK.Internal.targets'))" />
+    <Error Condition="!Exists('..\packages\JetBrains.ReSharper.SDK.Tests.2018.1.0\build\JetBrains.ReSharper.SDK.Tests.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\JetBrains.ReSharper.SDK.Tests.2018.1.0\build\JetBrains.ReSharper.SDK.Tests.props'))" />
   </Target>
   <Import Project="..\packages\JetBrains.Build.Platform.Tasks.ThemedIconsPacker.2.0.20151217.1\build\JetBrains.Build.Platform.Tasks.ThemedIconsPacker.Targets" Condition="Exists('..\packages\JetBrains.Build.Platform.Tasks.ThemedIconsPacker.2.0.20151217.1\build\JetBrains.Build.Platform.Tasks.ThemedIconsPacker.Targets')" />
   <Import Project="..\packages\JetBrains.Platform.Interop.dotMemoryUnit.Framework.112.0.20180414.70445\build\net45\JetBrains.Platform.Interop.dotMemoryUnit.Framework.targets" Condition="Exists('..\packages\JetBrains.Platform.Interop.dotMemoryUnit.Framework.112.0.20180414.70445\build\net45\JetBrains.Platform.Interop.dotMemoryUnit.Framework.targets')" />

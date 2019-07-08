@@ -48,8 +48,15 @@ namespace KaVE.RS.Commons.Utils
             var filename = _requestFileLocation();
             Asserts.Not(filename.IsNullOrEmpty(), Messages.NoFileGiven);
 
-            bool sharingDataEnabled = upe.SharingDataEnabled;
-
+            bool sharingDataEnabled = false;
+            try
+            {
+                sharingDataEnabled = upe.SharingDataEnabled;
+            }
+            catch (Exception)
+            {
+                sharingDataEnabled = false;
+            }
             // only share data if it is allowed by the user
             // otherwise, do nothing
             if (sharingDataEnabled)

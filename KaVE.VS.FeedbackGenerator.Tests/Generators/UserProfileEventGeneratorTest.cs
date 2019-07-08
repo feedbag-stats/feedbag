@@ -28,6 +28,7 @@ namespace KaVE.VS.FeedbackGenerator.Tests.Generators
     internal class UserProfileEventGeneratorTest : EventGeneratorTestBase
     {
         private UserProfileSettings _userSettings;
+        private DashboardPrivacySettings _userSettingsDashboard;
         private ISettingsStore _settingsStore;
 
         private UserProfileEventGenerator _sut;
@@ -55,8 +56,23 @@ namespace KaVE.VS.FeedbackGenerator.Tests.Generators
                 ProgrammingCSharp = Likert7Point.Unknown
             };
 
+            _userSettingsDashboard = new DashboardPrivacySettings
+            {
+                SharingDataEnabled = false,
+                SharingGenericInteractionDataForFeedBagOnlyEnabled = false,
+                SharingGenericInteractionDataForResearchEnabled = false,
+                SharingGenericInteractionDataForOpenDataSetEnabled = false,
+                SharingProjectSpecificDataForFeedBagOnlyEnabled = false,
+                SharingProjectSpecificDataForResearchEnabled = false,
+                SharingProjectSpecificDataForOpenDataSetEnabled = false,
+                SharingSourceCodeForFeedBagOnlyEnabled = false,
+                SharingSourceCodeForResearchEnabled = false,
+                SharingSourceCodeForOpenDataSetEnabled = false
+            };
+
             _settingsStore = Mock.Of<ISettingsStore>();
             Mock.Get(_settingsStore).Setup(s => s.GetSettings<UserProfileSettings>()).Returns(_userSettings);
+            Mock.Get(_settingsStore).Setup(s => s.GetSettings<DashboardPrivacySettings>()).Returns(_userSettingsDashboard);
 
             _sut = new UserProfileEventGenerator(
                 TestRSEnv,
@@ -259,6 +275,117 @@ namespace KaVE.VS.FeedbackGenerator.Tests.Generators
                 new UserProfileEvent
                 {
                     ProgrammingCSharp = Likert7Point.Negative1
+                });
+        }
+
+        // Dashboard tests
+        [Test]
+        public void CopiesSharingDataEnabled()
+        {
+            _userSettingsDashboard.SharingDataEnabled = true;
+            AssertEvent(
+                new UserProfileEvent
+                {
+                    SharingDataEnabled = true
+                });
+        }
+
+        [Test]
+        public void CopiesSharingGenericInteractionDataForFeedBagOnlyEnabled()
+        {
+            _userSettingsDashboard.SharingGenericInteractionDataForFeedBagOnlyEnabled = true;
+            AssertEvent(
+                new UserProfileEvent
+                {
+                    SharingGenericInteractionDataForFeedBagOnlyEnabled = true
+                });
+        }
+
+        [Test]
+        public void CopiesSharingGenericInteractionDataForResearchEnabled()
+        {
+            _userSettingsDashboard.SharingGenericInteractionDataForResearchEnabled = true;
+            AssertEvent(
+                new UserProfileEvent
+                {
+                    SharingGenericInteractionDataForResearchEnabled = true
+                });
+        }
+
+        [Test]
+        public void CopiesSharingGenericInteractionDataForOpenDataSetEnabled()
+        {
+            _userSettingsDashboard.SharingGenericInteractionDataForOpenDataSetEnabled = true;
+            AssertEvent(
+                new UserProfileEvent
+                {
+                    SharingGenericInteractionDataForOpenDataSetEnabled = true
+                });
+        }
+
+        [Test]
+        public void CopiesSharingProjectSpecificDataForFeedBagOnlyEnabled()
+        {
+            _userSettingsDashboard.SharingProjectSpecificDataForFeedBagOnlyEnabled = true;
+            AssertEvent(
+                new UserProfileEvent
+                {
+                    SharingProjectSpecificDataForFeedBagOnlyEnabled = true
+                });
+        }
+
+        [Test]
+        public void CopiesSharingProjectSpecificDataForResearchEnabled()
+        {
+            _userSettingsDashboard.SharingProjectSpecificDataForResearchEnabled = true;
+            AssertEvent(
+                new UserProfileEvent
+                {
+                    SharingProjectSpecificDataForResearchEnabled = true
+                });
+        }
+
+        [Test]
+        public void CopiesSharingProjectSpecificDataForOpenDataSetEnabled()
+        {
+            _userSettingsDashboard.SharingProjectSpecificDataForOpenDataSetEnabled = true;
+            AssertEvent(
+                new UserProfileEvent
+                {
+                    SharingProjectSpecificDataForOpenDataSetEnabled = true
+                });
+        }
+
+        [Test]
+        public void CopiesSharingSourceCodeForFeedBagOnlyEnabled()
+        {
+            _userSettingsDashboard.SharingSourceCodeForFeedBagOnlyEnabled = true;
+            AssertEvent(
+                new UserProfileEvent
+                {
+                    SharingSourceCodeForFeedBagOnlyEnabled = true
+                });
+        }
+
+        [Test]
+        public void CopieSharingSourceCodeForResearchEnabled()
+        {
+            _userSettingsDashboard.SharingSourceCodeForResearchEnabled = true;
+            AssertEvent(
+                new UserProfileEvent
+                {
+                    SharingSourceCodeForResearchEnabled = true
+                });
+        }
+
+        [Test]
+        public void CopiesSharingSourceCodeForOpenDataSetEnabled()
+        {
+            _userSettingsDashboard.SharingSourceCodeForOpenDataSetEnabled = true;
+            AssertEvent(
+                new UserProfileEvent
+                {
+                    SharingSourceCodeForOpenDataSetEnabled = true
                 });
         }
     }

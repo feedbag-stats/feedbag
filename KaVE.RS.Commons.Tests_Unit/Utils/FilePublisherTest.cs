@@ -67,6 +67,7 @@ namespace KaVE.RS.Commons.Tests_Unit.Utils
         public void AllSourceEventsArePublishedTogetherWithProfile()
         {
             var upe = new UserProfileEvent();
+            upe.SharingDataEnabled = true;
             var testEvents = TestEventSource(10).ToList();
 
             var uut = new FilePublisher(() => SomeTargetLocation);
@@ -79,13 +80,25 @@ namespace KaVE.RS.Commons.Tests_Unit.Utils
 
         [Test]
         public void ProgressCallsArePassedThrough()
-        {
-            const int expected = 8;
+        {   
+            // if no privacy settings are defined, nothing is published
+            const int expected = 0;
             var count = 0;
             var uut = new FilePublisher(() => SomeTargetLocation);
             uut.Publish(null, TestEventSource(expected), () => count++);
             // +upe
-            Assert.AreEqual(expected+1, count);
+            Assert.AreEqual(expected, count);
+        }
+
+        [Test]
+        public void ProgressCallsArePassedThrough_2()
+        {
+            const int expected = 8;
+            var count = 0;
+            var uut = new FilePublisher(() => SomeTargetLocation);
+            uut.Publish(_userProfileEvent, TestEventSource(expected), () => count++);
+            // +upe
+            Assert.AreEqual(expected + 1, count);
         }
     }
 }

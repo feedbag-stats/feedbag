@@ -71,7 +71,7 @@ namespace KaVE.RS.Commons.Tests_Unit.Utils
 
             Registry.RegisterComponent(_publisherUtilsMock.Object);
 
-            _userProfileEvent = new UserProfileEvent {ProfileId = "p"};
+            _userProfileEvent = new UserProfileEvent {ProfileId = "p", SharingDataEnabled = true};
         }
 
         private bool MockWriteEventsToZipStream(IEnumerable<IDEEvent> events, Stream stream, Action progress)

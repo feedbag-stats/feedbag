@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Task = System.Threading.Tasks.Task;
+using KaVE.VS.Commons;
+using KaVE.RS.Commons.Settings;
+
+
 
 namespace Dashboard
 {
@@ -100,8 +104,10 @@ namespace Dashboard
                 OLEMSGICON.OLEMSGICON_INFO,
                 OLEMSGBUTTON.OLEMSGBUTTON_OK,
                 OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);*/
-         
-            System.Diagnostics.Process.Start("https://feedbag-stats-frontend.herokuapp.com");
+
+            //var userId = Registry.GetComponent<SettingsStore>().GetSettings<UserProfileSettings>().ProfileId;
+            //System.Diagnostics.Process.Start("https://feedbag-stats-frontend.herokuapp.com/login/" + userId.ToString());
+            System.Diagnostics.Process.Start("https://feedbag-stats-frontend.herokuapp.com/");
         }
     }
 }

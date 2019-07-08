@@ -74,9 +74,10 @@ namespace Dashboard
             // 
             this.checkBoxResearchSourceCode.AutoSize = true;
             this.checkBoxResearchSourceCode.Enabled = false;
-            this.checkBoxResearchSourceCode.Location = new System.Drawing.Point(424, 313);
+            this.checkBoxResearchSourceCode.Location = new System.Drawing.Point(283, 203);
+            this.checkBoxResearchSourceCode.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBoxResearchSourceCode.Name = "checkBoxResearchSourceCode";
-            this.checkBoxResearchSourceCode.Size = new System.Drawing.Size(22, 21);
+            this.checkBoxResearchSourceCode.Size = new System.Drawing.Size(15, 14);
             this.checkBoxResearchSourceCode.TabIndex = 3;
             this.checkBoxResearchSourceCode.UseVisualStyleBackColor = true;
             this.checkBoxResearchSourceCode.CheckedChanged += new System.EventHandler(this.checkBoxResearchSourceCode_CheckedChanged);
@@ -85,9 +86,10 @@ namespace Dashboard
             // 
             this.checkBoxOpenDataSourceCode.AutoSize = true;
             this.checkBoxOpenDataSourceCode.Enabled = false;
-            this.checkBoxOpenDataSourceCode.Location = new System.Drawing.Point(607, 313);
+            this.checkBoxOpenDataSourceCode.Location = new System.Drawing.Point(405, 203);
+            this.checkBoxOpenDataSourceCode.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBoxOpenDataSourceCode.Name = "checkBoxOpenDataSourceCode";
-            this.checkBoxOpenDataSourceCode.Size = new System.Drawing.Size(22, 21);
+            this.checkBoxOpenDataSourceCode.Size = new System.Drawing.Size(15, 14);
             this.checkBoxOpenDataSourceCode.TabIndex = 12;
             this.checkBoxOpenDataSourceCode.UseVisualStyleBackColor = true;
             this.checkBoxOpenDataSourceCode.CheckedChanged += new System.EventHandler(this.checkBoxOpenDataSourceCode_CheckedChanged);
@@ -96,9 +98,10 @@ namespace Dashboard
             // 
             this.checkBoxOpenDataProjectSpecific.AutoSize = true;
             this.checkBoxOpenDataProjectSpecific.Enabled = false;
-            this.checkBoxOpenDataProjectSpecific.Location = new System.Drawing.Point(607, 277);
+            this.checkBoxOpenDataProjectSpecific.Location = new System.Drawing.Point(405, 180);
+            this.checkBoxOpenDataProjectSpecific.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBoxOpenDataProjectSpecific.Name = "checkBoxOpenDataProjectSpecific";
-            this.checkBoxOpenDataProjectSpecific.Size = new System.Drawing.Size(22, 21);
+            this.checkBoxOpenDataProjectSpecific.Size = new System.Drawing.Size(15, 14);
             this.checkBoxOpenDataProjectSpecific.TabIndex = 11;
             this.checkBoxOpenDataProjectSpecific.UseVisualStyleBackColor = true;
             this.checkBoxOpenDataProjectSpecific.CheckedChanged += new System.EventHandler(this.checkBoxOpenDataProjectSpecific_CheckedChanged);
@@ -107,9 +110,10 @@ namespace Dashboard
             // 
             this.checkBoxOpenDataGenericInteraction.AutoSize = true;
             this.checkBoxOpenDataGenericInteraction.Enabled = false;
-            this.checkBoxOpenDataGenericInteraction.Location = new System.Drawing.Point(607, 241);
+            this.checkBoxOpenDataGenericInteraction.Location = new System.Drawing.Point(405, 157);
+            this.checkBoxOpenDataGenericInteraction.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBoxOpenDataGenericInteraction.Name = "checkBoxOpenDataGenericInteraction";
-            this.checkBoxOpenDataGenericInteraction.Size = new System.Drawing.Size(22, 21);
+            this.checkBoxOpenDataGenericInteraction.Size = new System.Drawing.Size(15, 14);
             this.checkBoxOpenDataGenericInteraction.TabIndex = 10;
             this.checkBoxOpenDataGenericInteraction.UseVisualStyleBackColor = true;
             this.checkBoxOpenDataGenericInteraction.CheckedChanged += new System.EventHandler(this.checkBoxOpenDataGenericInteraction_CheckedChanged);
@@ -117,9 +121,10 @@ namespace Dashboard
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(265, 201);
+            this.label1.Location = new System.Drawing.Point(176, 131);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(110, 20);
+            this.label1.Size = new System.Drawing.Size(74, 13);
             this.label1.TabIndex = 20;
             this.label1.Text = "FeedBag Only\r\n";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -127,27 +132,32 @@ namespace Dashboard
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(420, 201);
+            this.label2.Location = new System.Drawing.Point(280, 118);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(141, 20);
+            this.label2.Size = new System.Drawing.Size(95, 26);
             this.label2.TabIndex = 21;
-            this.label2.Text = "Research Purpose";
+            this.label2.Text = "FeedBag Only + \r\nResearch Purpose";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(603, 201);
+            this.label3.Location = new System.Drawing.Point(402, 105);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(116, 20);
+            this.label3.Size = new System.Drawing.Size(104, 39);
             this.label3.TabIndex = 22;
-            this.label3.Text = "Open Data Set";
+            this.label3.Text = "FeedBag Only + \r\nResearch Purpose +\r\nOpen Data Set";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(25, 242);
+            this.label4.Location = new System.Drawing.Point(17, 157);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(184, 20);
+            this.label4.Size = new System.Drawing.Size(123, 13);
             this.label4.TabIndex = 23;
             this.label4.Text = "Generic Interaction Data";
             this.label4.Click += new System.EventHandler(this.label4_Click);
@@ -155,18 +165,20 @@ namespace Dashboard
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(25, 278);
+            this.label5.Location = new System.Drawing.Point(17, 181);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(157, 20);
+            this.label5.Size = new System.Drawing.Size(107, 13);
             this.label5.TabIndex = 24;
             this.label5.Text = "Project Specific Data";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(24, 314);
+            this.label6.Location = new System.Drawing.Point(16, 204);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(102, 20);
+            this.label6.Size = new System.Drawing.Size(69, 13);
             this.label6.TabIndex = 25;
             this.label6.Text = "Source Code";
             // 
@@ -174,18 +186,20 @@ namespace Dashboard
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(21, 44);
+            this.label7.Location = new System.Drawing.Point(14, 29);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(405, 37);
+            this.label7.Size = new System.Drawing.Size(276, 26);
             this.label7.TabIndex = 26;
             this.label7.Text = "Data Collection Settings for";
             this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // SaveDefaultSettingsButton
             // 
-            this.SaveDefaultSettingsButton.Location = new System.Drawing.Point(215, 405);
+            this.SaveDefaultSettingsButton.Location = new System.Drawing.Point(143, 263);
+            this.SaveDefaultSettingsButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.SaveDefaultSettingsButton.Name = "SaveDefaultSettingsButton";
-            this.SaveDefaultSettingsButton.Size = new System.Drawing.Size(177, 33);
+            this.SaveDefaultSettingsButton.Size = new System.Drawing.Size(118, 21);
             this.SaveDefaultSettingsButton.TabIndex = 30;
             this.SaveDefaultSettingsButton.Text = "Save Default Settings";
             this.SaveDefaultSettingsButton.UseVisualStyleBackColor = true;
@@ -193,9 +207,10 @@ namespace Dashboard
             // 
             // LoadDefaultSettingsButton
             // 
-            this.LoadDefaultSettingsButton.Location = new System.Drawing.Point(28, 405);
+            this.LoadDefaultSettingsButton.Location = new System.Drawing.Point(19, 263);
+            this.LoadDefaultSettingsButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.LoadDefaultSettingsButton.Name = "LoadDefaultSettingsButton";
-            this.LoadDefaultSettingsButton.Size = new System.Drawing.Size(181, 33);
+            this.LoadDefaultSettingsButton.Size = new System.Drawing.Size(121, 21);
             this.LoadDefaultSettingsButton.TabIndex = 31;
             this.LoadDefaultSettingsButton.Text = "Load Default Settings";
             this.LoadDefaultSettingsButton.UseVisualStyleBackColor = true;
@@ -205,9 +220,10 @@ namespace Dashboard
             // 
             this.checkBoxResearchGenericInteraction.AutoSize = true;
             this.checkBoxResearchGenericInteraction.Enabled = false;
-            this.checkBoxResearchGenericInteraction.Location = new System.Drawing.Point(424, 241);
+            this.checkBoxResearchGenericInteraction.Location = new System.Drawing.Point(283, 157);
+            this.checkBoxResearchGenericInteraction.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBoxResearchGenericInteraction.Name = "checkBoxResearchGenericInteraction";
-            this.checkBoxResearchGenericInteraction.Size = new System.Drawing.Size(22, 21);
+            this.checkBoxResearchGenericInteraction.Size = new System.Drawing.Size(15, 14);
             this.checkBoxResearchGenericInteraction.TabIndex = 32;
             this.checkBoxResearchGenericInteraction.UseVisualStyleBackColor = true;
             this.checkBoxResearchGenericInteraction.CheckedChanged += new System.EventHandler(this.checkBoxResearchGenericInteraction_CheckedChanged);
@@ -216,9 +232,10 @@ namespace Dashboard
             // 
             this.checkBoxResearchProjectSpecific.AutoSize = true;
             this.checkBoxResearchProjectSpecific.Enabled = false;
-            this.checkBoxResearchProjectSpecific.Location = new System.Drawing.Point(424, 277);
+            this.checkBoxResearchProjectSpecific.Location = new System.Drawing.Point(283, 180);
+            this.checkBoxResearchProjectSpecific.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBoxResearchProjectSpecific.Name = "checkBoxResearchProjectSpecific";
-            this.checkBoxResearchProjectSpecific.Size = new System.Drawing.Size(22, 21);
+            this.checkBoxResearchProjectSpecific.Size = new System.Drawing.Size(15, 14);
             this.checkBoxResearchProjectSpecific.TabIndex = 34;
             this.checkBoxResearchProjectSpecific.UseVisualStyleBackColor = true;
             this.checkBoxResearchProjectSpecific.CheckedChanged += new System.EventHandler(this.checkBoxResearchProjectSpecific_CheckedChanged);
@@ -229,9 +246,10 @@ namespace Dashboard
             this.checkBoxFeedBagOnlyGenericInteraction.Checked = true;
             this.checkBoxFeedBagOnlyGenericInteraction.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxFeedBagOnlyGenericInteraction.Enabled = false;
-            this.checkBoxFeedBagOnlyGenericInteraction.Location = new System.Drawing.Point(269, 241);
+            this.checkBoxFeedBagOnlyGenericInteraction.Location = new System.Drawing.Point(179, 157);
+            this.checkBoxFeedBagOnlyGenericInteraction.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBoxFeedBagOnlyGenericInteraction.Name = "checkBoxFeedBagOnlyGenericInteraction";
-            this.checkBoxFeedBagOnlyGenericInteraction.Size = new System.Drawing.Size(22, 21);
+            this.checkBoxFeedBagOnlyGenericInteraction.Size = new System.Drawing.Size(15, 14);
             this.checkBoxFeedBagOnlyGenericInteraction.TabIndex = 35;
             this.checkBoxFeedBagOnlyGenericInteraction.UseVisualStyleBackColor = true;
             this.checkBoxFeedBagOnlyGenericInteraction.CheckedChanged += new System.EventHandler(this.checkBoxFeedBagOnlyGenericInteraction_CheckedChanged);
@@ -242,9 +260,10 @@ namespace Dashboard
             this.checkBoxFeedBagOnlyProjectSpecific.Checked = true;
             this.checkBoxFeedBagOnlyProjectSpecific.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxFeedBagOnlyProjectSpecific.Enabled = false;
-            this.checkBoxFeedBagOnlyProjectSpecific.Location = new System.Drawing.Point(269, 277);
+            this.checkBoxFeedBagOnlyProjectSpecific.Location = new System.Drawing.Point(179, 180);
+            this.checkBoxFeedBagOnlyProjectSpecific.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBoxFeedBagOnlyProjectSpecific.Name = "checkBoxFeedBagOnlyProjectSpecific";
-            this.checkBoxFeedBagOnlyProjectSpecific.Size = new System.Drawing.Size(22, 21);
+            this.checkBoxFeedBagOnlyProjectSpecific.Size = new System.Drawing.Size(15, 14);
             this.checkBoxFeedBagOnlyProjectSpecific.TabIndex = 36;
             this.checkBoxFeedBagOnlyProjectSpecific.UseVisualStyleBackColor = true;
             this.checkBoxFeedBagOnlyProjectSpecific.CheckedChanged += new System.EventHandler(this.checkBoxFeedBagOnlyProjectSpecific_CheckedChanged);
@@ -255,9 +274,10 @@ namespace Dashboard
             this.checkBoxFeedBagOnlySourceCode.Checked = true;
             this.checkBoxFeedBagOnlySourceCode.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxFeedBagOnlySourceCode.Enabled = false;
-            this.checkBoxFeedBagOnlySourceCode.Location = new System.Drawing.Point(269, 313);
+            this.checkBoxFeedBagOnlySourceCode.Location = new System.Drawing.Point(179, 203);
+            this.checkBoxFeedBagOnlySourceCode.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBoxFeedBagOnlySourceCode.Name = "checkBoxFeedBagOnlySourceCode";
-            this.checkBoxFeedBagOnlySourceCode.Size = new System.Drawing.Size(22, 21);
+            this.checkBoxFeedBagOnlySourceCode.Size = new System.Drawing.Size(15, 14);
             this.checkBoxFeedBagOnlySourceCode.TabIndex = 37;
             this.checkBoxFeedBagOnlySourceCode.UseVisualStyleBackColor = true;
             this.checkBoxFeedBagOnlySourceCode.CheckedChanged += new System.EventHandler(this.checkBoxFeedBagOnlySourceCode_CheckedChanged);
@@ -265,9 +285,10 @@ namespace Dashboard
             // checkBoxEnableDataCollection
             // 
             this.checkBoxEnableDataCollection.AutoSize = true;
-            this.checkBoxEnableDataCollection.Location = new System.Drawing.Point(28, 121);
+            this.checkBoxEnableDataCollection.Location = new System.Drawing.Point(19, 79);
+            this.checkBoxEnableDataCollection.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBoxEnableDataCollection.Name = "checkBoxEnableDataCollection";
-            this.checkBoxEnableDataCollection.Size = new System.Drawing.Size(302, 24);
+            this.checkBoxEnableDataCollection.Size = new System.Drawing.Size(204, 17);
             this.checkBoxEnableDataCollection.TabIndex = 38;
             this.checkBoxEnableDataCollection.Text = "Enable data collection for this solution";
             this.checkBoxEnableDataCollection.UseVisualStyleBackColor = true;
@@ -275,9 +296,10 @@ namespace Dashboard
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(621, 405);
+            this.buttonCancel.Location = new System.Drawing.Point(414, 263);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(75, 33);
+            this.buttonCancel.Size = new System.Drawing.Size(50, 21);
             this.buttonCancel.TabIndex = 39;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
@@ -285,9 +307,10 @@ namespace Dashboard
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(702, 405);
+            this.buttonSave.Location = new System.Drawing.Point(468, 263);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(75, 33);
+            this.buttonSave.Size = new System.Drawing.Size(50, 21);
             this.buttonSave.TabIndex = 40;
             this.buttonSave.Text = "Save";
             this.buttonSave.UseVisualStyleBackColor = true;
@@ -295,24 +318,15 @@ namespace Dashboard
             // 
             // comboBoxSolutions
             // 
-
-            // get path to current solution
-            //DTE dte = (DTE)ServiceProvider.GlobalProvider.GetService(typeof(DTE));
-            DTE dte = (EnvDTE.DTE)System.Runtime.InteropServices.Marshal.GetActiveObject("VisualStudio.DTE");
-            string solutionDir = dte.Solution.FullName;
-
             this.comboBoxSolutions.AllowDrop = true;
             this.comboBoxSolutions.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxSolutions.FormattingEnabled = true;
-            /*this.comboBoxSolutions.Items.AddRange(new object[] {
-            "Solution 1 ",
-            "Solution 2",
-            "Solution 3",
-            "Solution 4"});*/
-            this.comboBoxSolutions.Items.AddRange(new object[] {solutionDir});
-            this.comboBoxSolutions.Location = new System.Drawing.Point(424, 41);
+            this.comboBoxSolutions.Items.AddRange(new object[] {
+            "C:\\Users\\szurm\\Documents\\new\\feedbag\\KaVE.Feedback.sln"});
+            this.comboBoxSolutions.Location = new System.Drawing.Point(283, 27);
+            this.comboBoxSolutions.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBoxSolutions.Name = "comboBoxSolutions";
-            this.comboBoxSolutions.Size = new System.Drawing.Size(345, 45);
+            this.comboBoxSolutions.Size = new System.Drawing.Size(231, 33);
             this.comboBoxSolutions.TabIndex = 41;
             this.comboBoxSolutions.Text = "Solution";
             this.comboBoxSolutions.SelectedIndexChanged += new System.EventHandler(this.comboBoxSolutions_SelectedIndexChanged);
@@ -321,10 +335,10 @@ namespace Dashboard
             // 
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
             this.AllowDrop = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(533, 292);
             this.Controls.Add(this.comboBoxSolutions);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.buttonCancel);
@@ -347,6 +361,7 @@ namespace Dashboard
             this.Controls.Add(this.checkBoxOpenDataProjectSpecific);
             this.Controls.Add(this.checkBoxOpenDataGenericInteraction);
             this.Controls.Add(this.checkBoxResearchSourceCode);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "DashboardSettingsForm";
             this.Text = "Dashboard Privacy Settings";
             this.Load += new System.EventHandler(this.DashboardSettingsForm_Load);
