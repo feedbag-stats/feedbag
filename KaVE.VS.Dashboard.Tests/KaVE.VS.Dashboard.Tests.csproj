@@ -183,7 +183,8 @@
       <HintPath>..\packages\Moq.4.7.142\lib\net45\Moq.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\.nuget\packages\newtonsoft.json\9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NuGet.Commands, Version=4.5.0.18023, Culture=neutral, PublicKeyToken=5aaa11a165479571, processorArchitecture=MSIL">
       <HintPath>..\packages\JetBrains.NuGet.Ultimate.4.5.0.20180215\lib\net45\NuGet.Commands.dll</HintPath>
@@ -294,7 +295,6 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DashboardSettingsFormTest.cs" />
-    <Compile Include="DashboardCommandsTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -304,6 +304,10 @@
     <ProjectReference Include="..\Dashboard\KaVE.VS.Dashboard.csproj">
       <Project>{805db3c4-265d-4508-a50d-2d5d4122a9a4}</Project>
       <Name>KaVE.VS.Dashboard</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KaVE.RS.Commons.Tests_Unit\KaVE.RS.Commons.Tests_Unit.csproj">
+      <Project>{35fcb52a-ccd2-49c7-ad6d-78a71164a324}</Project>
+      <Name>KaVE.RS.Commons.Tests_Unit</Name>
     </ProjectReference>
     <ProjectReference Include="..\KaVE.RS.Commons\KaVE.RS.Commons.csproj">
       <Project>{B2235734-D3E5-498F-87E2-E9780DBE0D8D}</Project>

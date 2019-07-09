@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Windows.Forms;
+using KaVE.Commons.Model.Events.UserProfiles;
 using KaVE.RS.Commons.Settings;
+using KaVE.RS.Commons.Utils;
 using KaVE.VS.Commons;
 using KaVE.VS.FeedbackGenerator.Generators;
+using KaVE.VS.FeedbackGenerator.Settings.ExportSettingsSuite;
+using KaVE.VS.FeedbackGenerator.UserControls.UploadWizard;
 using Newtonsoft.Json.Linq;
 
 namespace Dashboard
 {
     public partial class DashboardSettingsForm : Form
-    { 
+    {
         private dynamic _myPrivacySettingJson = new JObject();
         private string _myCurrentSolutionId = "0";
         private dynamic _myDefaultPrivacySettingsJson = new JObject();
@@ -38,10 +42,39 @@ namespace Dashboard
             privacySettings.OpenDataSourceCode = false;
         }
 
-        //only used for testing
+        // only used for testing
         public DashboardSettingsForm(bool testing)
         {
             InitializeComponent();
+        }
+
+        // only used for testing
+        public ISettingsStore SafeDefaultSettingsTesting(ISettingsStore settingsStore)
+        {
+            _myDefaultPrivacySettingsJson = JObject.Parse(_myPrivacySettingJson[_myCurrentSolutionId].ToString());
+
+            var privacyDefaultSettings = new DashboardDefaultPrivacySettings
+            {
+                SharingDataEnabled = _myDefaultPrivacySettingsJson["Enabled"],
+
+                SharingGenericInteractionDataForFeedBagOnlyEnabled = _myDefaultPrivacySettingsJson["FeedBagGenericInteraction"],
+                SharingGenericInteractionDataForResearchEnabled = _myDefaultPrivacySettingsJson["ResearchGenericInteraction"],
+                SharingGenericInteractionDataForOpenDataSetEnabled = _myDefaultPrivacySettingsJson["OpenDataGenericInteraction"],
+
+                SharingProjectSpecificDataForFeedBagOnlyEnabled = _myDefaultPrivacySettingsJson["FeedBagProjectSpecific"],
+                SharingProjectSpecificDataForResearchEnabled = _myDefaultPrivacySettingsJson["ResearchProjectSpecific"],
+                SharingProjectSpecificDataForOpenDataSetEnabled = _myDefaultPrivacySettingsJson["OpenDataProjectSpecific"],
+
+                SharingSourceCodeForFeedBagOnlyEnabled = _myDefaultPrivacySettingsJson["FeedBagSourceCode"],
+                SharingSourceCodeForResearchEnabled = _myDefaultPrivacySettingsJson["ResearchSourceCode"],
+                SharingSourceCodeForOpenDataSetEnabled = _myDefaultPrivacySettingsJson["OpenDataSourceCode"]
+            };
+
+            settingsStore.SetSettings<DashboardDefaultPrivacySettings>(privacyDefaultSettings);
+
+            //var sut = new UserProfileEventGenerator(null, null, null, settingsStore, null);
+
+            return settingsStore;
         }
 
         public void SaveDefaultSettings()
@@ -70,10 +103,15 @@ namespace Dashboard
             var settingsStore = Registry.GetComponent<ISettingsStore>();
             settingsStore.SetSettings<DashboardDefaultPrivacySettings>(privacyDefaultSettings);
 
-            //FIXME: replace the nulls with values
+            //TODO: Store default privacy settings
+
+            /*//FIXME: replace the nulls with values
             var sut = new UserProfileEventGenerator(null, null, null, settingsStore, null);
 
-            //sut.CreateEvent();
+            var userProfileEvent = sut.CreateEvent();
+
+            // publish privacy settings
+            PublishUserProfileEventWithPrivacySettings(settingsStore, userProfileEvent);*/
         }
 
         public void EnableCheckBoxDependingOnSelection(JObject selectedSettings)
@@ -107,6 +145,62 @@ namespace Dashboard
             this.checkBoxOpenDataSourceCode.Checked = (bool)selectedSettings["OpenDataSourceCode"];
             this.checkBoxOpenDataProjectSpecific.Checked = (bool)selectedSettings["OpenDataProjectSpecific"];
             this.checkBoxOpenDataGenericInteraction.Checked = (bool)selectedSettings["OpenDataGenericInteraction"];
+        }
+
+        // only used for testing
+        public void LoadDefaultSettingsForCurrentSolutionTest(ISettingsStore settingsStore)
+        {
+            try
+            {
+                DashboardDefaultPrivacySettings privacyDefaultSettings = settingsStore.GetSettings<DashboardDefaultPrivacySettings>();
+
+                if (privacyDefaultSettings.Equals(null))
+                {
+                    // take the locally saved default privacy setting
+                    try
+                    {
+                        EnableCheckBoxDependingOnSelection(_myDefaultPrivacySettingsJson);
+                        CheckCheckBoxesAccodingToSelection(_myDefaultPrivacySettingsJson);
+                    }
+                    catch (Exception) { }
+                }
+                else
+                {
+                    try
+                    {
+                        // otherwise load the default settings stored in the settings store
+                        dynamic privacyDefaultJObject = new JObject();
+                        privacyDefaultJObject.Solution = _myPrivacySettingJson[_myCurrentSolutionId]["Solution"];
+                        privacyDefaultJObject.Enabled = privacyDefaultSettings.SharingDataEnabled;
+
+                        privacyDefaultJObject.FeedBagGenericInteraction = privacyDefaultSettings.SharingGenericInteractionDataForFeedBagOnlyEnabled;
+                        privacyDefaultJObject.FeedBagProjectSpecific = privacyDefaultSettings.SharingProjectSpecificDataForFeedBagOnlyEnabled;
+                        privacyDefaultJObject.FeedBagSourceCode = privacyDefaultSettings.SharingSourceCodeForFeedBagOnlyEnabled;
+
+                        privacyDefaultJObject.ResearchGenericInteraction = privacyDefaultSettings.SharingGenericInteractionDataForResearchEnabled;
+                        privacyDefaultJObject.ResearchProjectSpecific = privacyDefaultSettings.SharingProjectSpecificDataForResearchEnabled;
+                        privacyDefaultJObject.ResearchSourceCode = privacyDefaultSettings.SharingSourceCodeForResearchEnabled;
+
+                        privacyDefaultJObject.OpenDataGenericInteraction = privacyDefaultSettings.SharingGenericInteractionDataForOpenDataSetEnabled;
+                        privacyDefaultJObject.OpenDataProjectSpecific = privacyDefaultSettings.SharingProjectSpecificDataForOpenDataSetEnabled;
+                        privacyDefaultJObject.OpenDataSourceCode = privacyDefaultSettings.SharingSourceCodeForOpenDataSetEnabled;
+
+                        EnableCheckBoxDependingOnSelection(privacyDefaultJObject);
+                        CheckCheckBoxesAccodingToSelection(privacyDefaultJObject);
+                    }
+                    catch (Exception) { }
+                }
+            }
+            catch (Exception)
+            {
+                // take the locally saved default privacy setting
+                try
+                {
+                    EnableCheckBoxDependingOnSelection(_myDefaultPrivacySettingsJson);
+                    CheckCheckBoxesAccodingToSelection(_myDefaultPrivacySettingsJson);
+                }
+                catch (Exception) { }
+            }
         }
 
         public void LoadDefaultSettingsForCurrentSolution()
@@ -153,7 +247,7 @@ namespace Dashboard
                     catch (Exception) { }
                 }
             }
-            catch (Exception )
+            catch (Exception)
             {
                 // take the locally saved default privacy setting
                 try
@@ -163,8 +257,8 @@ namespace Dashboard
                 }
                 catch (Exception) { }
             }
-            
-        }    
+
+        }
 
         public void InitializePrivacySettingsJObject()
         {
@@ -172,7 +266,7 @@ namespace Dashboard
 
             // change combobox text to name of first solution
             this.comboBoxSolutions.Text = mySolutions[0].ToString();
-            
+
             int id = 0;
             //initialize privacy settings JObject
             foreach (object solution in mySolutions)
@@ -196,7 +290,7 @@ namespace Dashboard
                 _myPrivacySettingJson.Add(id.ToString(), privacySettings);
                 id++;
 
-            }   
+            }
         }
 
 
@@ -263,7 +357,7 @@ namespace Dashboard
             }
 
         }
-        
+
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -286,7 +380,7 @@ namespace Dashboard
                 SharingSourceCodeForFeedBagOnlyEnabled = _myPrivacySettingJson[_myCurrentSolutionId]["FeedBagSourceCode"],
                 SharingSourceCodeForResearchEnabled = _myPrivacySettingJson[_myCurrentSolutionId]["ResearchSourceCode"],
                 SharingSourceCodeForOpenDataSetEnabled = _myPrivacySettingJson[_myCurrentSolutionId]["OpenDataSourceCode"]
-                
+
             };
 
             // add the privacy stettings to the settings store
@@ -296,10 +390,25 @@ namespace Dashboard
             //FIXME: replace the nulls with values
             var sut = new UserProfileEventGenerator(null, null, null, settingsStore, null);
 
-            sut.CreateEvent();
+            // create user profile event with included privacy settings
+            var userProfileEvent = sut.CreateEvent();
 
-            // close the privacy settings windows
+            // publish
+            PublishUserProfileEventWithPrivacySettings(settingsStore, userProfileEvent);
+
+            // close the privacy settings window
             this.Close();
+        }
+
+        public void PublishUserProfileEventWithPrivacySettings(ISettingsStore settingsStore, UserProfileEvent userProfileEvent)
+        {
+            // prepare export and create publisher
+            var exportSettings = settingsStore.GetSettings<ExportSettings>();
+            var exportUri = new Uri(exportSettings.UploadUrl);
+            IPublisher publisher = new WiHttpPublisher(exportUri);
+
+            // publish user profile event with included privacy settings
+            publisher.Publish(userProfileEvent, null, null);
         }
 
         private void checkBoxFeedBagOnlyGenericInteraction_CheckedChanged(object sender, EventArgs e)

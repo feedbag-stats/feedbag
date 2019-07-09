@@ -4,6 +4,16 @@ using Dashboard;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
 using KaVE.RS.Commons;
+using KaVE.Commons;
+using KaVE.RS.Commons.Settings;
+using KaVE.Commons.Utils;
+using Moq;
+using KaVE.Commons.Model.Events.UserProfiles;
+using KaVE.VS.FeedbackGenerator.Generators;
+using KaVE.RS.Commons.Utils;
+using System.Collections.Generic;
+using KaVE.Commons.Model.Events;
+using KaVE.Commons.Model.Events.VisualStudio;
 
 namespace KaVE.VS.Dashboard.Tests
 {
@@ -14,6 +24,14 @@ namespace KaVE.VS.Dashboard.Tests
         private readonly ComboBox _comboBox1 = new ComboBox();
         private readonly string _myCurrentSolutionId = "1";
 
+        private ISettingsStore _settingsStore;
+        private UserProfileSettings _settings;
+        private DashboardPrivacySettings _settingsDashboard;
+        private DashboardDefaultPrivacySettings _settingsDefault;
+        private IRandomizationUtils _rnd;
+        private Guid _rndGuid;
+
+        private UserProfileSettingsUtils _sut;
 
         public DashboardSettingsFormTest()
         {
@@ -41,19 +59,40 @@ namespace KaVE.VS.Dashboard.Tests
 
             _dashboardSettingsForm.SetCombobox(_comboBox1);
             _dashboardSettingsForm.InitializePrivacySettingsJObject();
+
+            _settings = new UserProfileSettings();
+            _settingsDashboard = new DashboardPrivacySettings();
+            _settingsDefault = new DashboardDefaultPrivacySettings();
+            _settingsStore = Mock.Of<ISettingsStore>();
+            Mock.Get(_settingsStore).Setup(ss => ss.GetSettings<UserProfileSettings>()).Returns(_settings);
+            Mock.Get(_settingsStore).Setup(ss => ss.GetSettings<DashboardPrivacySettings>()).Returns(_settingsDashboard);
+            Mock.Get(_settingsStore).Setup(ss => ss.GetSettings<DashboardDefaultPrivacySettings>()).Returns(_settingsDefault);
+
+            _rndGuid = Guid.NewGuid();
+            _rnd = Mock.Of<IRandomizationUtils>();
+            Mock.Get(_rnd).Setup(r => r.GetRandomGuid()).Returns(_rndGuid);
+
+            _sut = new UserProfileSettingsUtils(_settingsStore, _rnd);
         }
 
         public void TestSaveDefaultSettings()
         {
-            _dashboardSettingsForm.SaveDefaultSettings();
+            //_dashboardSettingsForm.GetDefaultPrivacySettingsJobject()["Enabled"] = true;
+            //_dashboardSettingsForm.GetDefaultPrivacySettingsJobject()["FeedBagGenericInteraction"] = true;
+            //_dashboardSettingsForm.GetDefaultPrivacySettingsJobject()["ResearchGenericInteraction"] = true;
+            _dashboardSettingsForm.GetPrivacySettingJson()["1"]["Enabled"] = true;
+            _dashboardSettingsForm.GetPrivacySettingJson()["1"]["FeedBagGenericInteraction"] = true;
+            _dashboardSettingsForm.GetPrivacySettingJson()["1"]["ResearchGenericInteraction"] = true;
 
-            JObject expectedDefaultSettingsJObect = JObject.Parse(
+            ISettingsStore defaultSettingsStore = _dashboardSettingsForm.SafeDefaultSettingsTesting(_settingsStore);
+
+            /*JObject expectedDefaultSettingsJObect = JObject.Parse(
                 @"{'Solution': 'Solution 2', " +
-                "'Enabled': false," +
-                "'FeedBagGenericInteraction': false," +
+                "'Enabled': true," +
+                "'FeedBagGenericInteraction': true," +
                 "'FeedBagProjectSpecific': false," +
                 "'FeedBagSourceCode': false," +
-                "'ResearchGenericInteraction': false," +
+                "'ResearchGenericInteraction': true," +
                 "'ResearchProjectSpecific': false," +
                 "'ResearchSourceCode': false," +
                 "'OpenDataGenericInteraction': false," +
@@ -62,7 +101,27 @@ namespace KaVE.VS.Dashboard.Tests
                 "}");
 
             JObject resultDefaultPrivacySettingsJson = _dashboardSettingsForm.GetDefaultPrivacySettingsJobject();
-            Assert.AreEqual(resultDefaultPrivacySettingsJson.ToString(), expectedDefaultSettingsJObect.ToString());
+            Assert.AreEqual(resultDefaultPrivacySettingsJson.ToString(), expectedDefaultSettingsJObect.ToString());*/
+
+            Assert.Equals(true, defaultSettingsStore.GetSettings<DashboardDefaultPrivacySettings>().SharingDataEnabled);
+            Assert.Equals(true, defaultSettingsStore.GetSettings<DashboardDefaultPrivacySettings>().SharingGenericInteractionDataForFeedBagOnlyEnabled);
+            Assert.Equals(true, defaultSettingsStore.GetSettings<DashboardDefaultPrivacySettings>().SharingProjectSpecificDataForFeedBagOnlyEnabled);
+            Assert.Equals(false, defaultSettingsStore.GetSettings<DashboardDefaultPrivacySettings>().SharingSourceCodeForFeedBagOnlyEnabled);
+
+            Assert.Equals(false, defaultSettingsStore.GetSettings<DashboardDefaultPrivacySettings>().SharingDataEnabled);
+            Assert.Equals(false, defaultSettingsStore.GetSettings<DashboardDefaultPrivacySettings>().SharingGenericInteractionDataForResearchEnabled );
+            Assert.Equals(false, defaultSettingsStore.GetSettings<DashboardDefaultPrivacySettings>().SharingProjectSpecificDataForResearchEnabled);
+            Assert.Equals(false, defaultSettingsStore.GetSettings<DashboardDefaultPrivacySettings>().SharingSourceCodeForResearchEnabled);
+
+            Assert.Equals(false, defaultSettingsStore.GetSettings<DashboardDefaultPrivacySettings>().SharingDataEnabled);
+            Assert.Equals(false, defaultSettingsStore.GetSettings<DashboardDefaultPrivacySettings>().SharingGenericInteractionDataForOpenDataSetEnabled);
+            Assert.Equals(false, defaultSettingsStore.GetSettings<DashboardDefaultPrivacySettings>().SharingProjectSpecificDataForOpenDataSetEnabled);
+            Assert.Equals(false, defaultSettingsStore.GetSettings<DashboardDefaultPrivacySettings>().SharingSourceCodeForOpenDataSetEnabled);
+
+            _dashboardSettingsForm.GetPrivacySettingJson()["1"]["Enabled"] = false;
+            _dashboardSettingsForm.GetPrivacySettingJson()["1"]["FeedBagGenericInteraction"] = false;
+            _dashboardSettingsForm.GetPrivacySettingJson()["1"]["ResearchGenericInteraction"] = false;
+
         }
 
         [TestMethod]
@@ -270,19 +329,38 @@ namespace KaVE.VS.Dashboard.Tests
 
             _dashboardSettingsForm.SetDefaultPrivacySettingsJObject(defaultPrivacySettings);
 
-            _dashboardSettingsForm.LoadDefaultSettingsForCurrentSolution();
+            _settingsDefault.SharingDataEnabled = true;
+            _settingsDefault.SharingGenericInteractionDataForFeedBagOnlyEnabled = true;
+            _settingsDefault.SharingGenericInteractionDataForResearchEnabled = true;
+            _settingsDefault.SharingGenericInteractionDataForOpenDataSetEnabled = false;
+            _settingsDefault.SharingProjectSpecificDataForFeedBagOnlyEnabled = true;
+            _settingsDefault.SharingProjectSpecificDataForResearchEnabled = false;
+            _settingsDefault.SharingProjectSpecificDataForOpenDataSetEnabled = false;
+            _settingsDefault.SharingSourceCodeForFeedBagOnlyEnabled = true;
+            _settingsDefault.SharingSourceCodeForResearchEnabled = true;
+            _settingsDefault.SharingSourceCodeForOpenDataSetEnabled = true;
+
+            _settingsStore.SetSettings<DashboardDefaultPrivacySettings>(_settingsDefault);
+
+            _dashboardSettingsForm.LoadDefaultSettingsForCurrentSolutionTest(_settingsStore);
+
+            // Checked
+            Assert.AreEqual(_dashboardSettingsForm.GetCheckBoxEnableDataCollection().Checked, true);
 
             Assert.AreEqual(_dashboardSettingsForm.GetCheckBoxFeedBagOnlyGenericInteraction().Checked, true);
             Assert.AreEqual(_dashboardSettingsForm.GetCheckBoxFeedBagOnlyProjectSpecific().Checked, true);
             Assert.AreEqual(_dashboardSettingsForm.GetCheckBoxFeedBagOnlySourceCode().Checked, true);
 
             Assert.AreEqual(_dashboardSettingsForm.GetCheckBoxResearchGenericInteraction().Checked, true);
-            Assert.AreEqual(_dashboardSettingsForm.GetCheckBoxResearchProjectSpecific().Checked, true);
+            Assert.AreEqual(_dashboardSettingsForm.GetCheckBoxResearchProjectSpecific().Checked, false);
             Assert.AreEqual(_dashboardSettingsForm.GetCheckBoxResearchSourceCode().Checked, true);
 
-            Assert.AreEqual(_dashboardSettingsForm.GetCheckBoxOpenDataGenericInteraction().Checked, true);
+            Assert.AreEqual(_dashboardSettingsForm.GetCheckBoxOpenDataGenericInteraction().Checked, false);
             Assert.AreEqual(_dashboardSettingsForm.GetCheckBoxOpenDataProjectSpecific().Checked, false);
-            Assert.AreEqual(_dashboardSettingsForm.GetCheckBoxOpenDataSourceCode().Checked, false);
+            Assert.AreEqual(_dashboardSettingsForm.GetCheckBoxOpenDataSourceCode().Checked, true);
+
+            // Enabled
+            Assert.AreEqual(_dashboardSettingsForm.GetCheckBoxEnableDataCollection().Enabled, true);
 
             Assert.AreEqual(_dashboardSettingsForm.GetCheckBoxFeedBagOnlyGenericInteraction().Enabled, false);
             Assert.AreEqual(_dashboardSettingsForm.GetCheckBoxFeedBagOnlyProjectSpecific().Enabled, false);
@@ -620,5 +698,64 @@ namespace KaVE.VS.Dashboard.Tests
 
         }
 
+        [TestMethod]
+        public void TestPublishUserProfileEventWithPrivacySettings()
+        {
+            /*_settingsDashboard.SharingDataEnabled = true;
+            _settingsDashboard.SharingGenericInteractionDataForFeedBagOnlyEnabled = true;
+            _settingsDashboard.SharingGenericInteractionDataForResearchEnabled = true;
+            _settingsDashboard.SharingGenericInteractionDataForOpenDataSetEnabled = false;
+            _settingsDashboard.SharingProjectSpecificDataForFeedBagOnlyEnabled = true;
+            _settingsDashboard.SharingProjectSpecificDataForResearchEnabled = false;
+            _settingsDashboard.SharingProjectSpecificDataForOpenDataSetEnabled = false;
+            _settingsDashboard.SharingSourceCodeForFeedBagOnlyEnabled = true;
+            _settingsDashboard.SharingSourceCodeForResearchEnabled = true;
+            _settingsDashboard.SharingSourceCodeForOpenDataSetEnabled = true;
+
+
+            _settingsStore.SetSettings<DashboardPrivacySettings>(_settingsDashboard);
+            _settingsStore.SetSettings<UserProfileSettings>(new UserProfileSettings());*/
+
+            UserProfileEventGenerator sut = new UserProfileEventGenerator(null, null, null, _settingsStore, null);
+            UserProfileEvent userProfileEvent = new UserProfileEvent {
+                ProfileId = "p",
+                SharingDataEnabled = true,
+                SharingGenericInteractionDataForFeedBagOnlyEnabled = true,
+                SharingGenericInteractionDataForResearchEnabled = true,
+                SharingGenericInteractionDataForOpenDataSetEnabled = false,
+                SharingProjectSpecificDataForFeedBagOnlyEnabled = true,
+                SharingProjectSpecificDataForResearchEnabled = false,
+                SharingProjectSpecificDataForOpenDataSetEnabled = false,
+                SharingSourceCodeForFeedBagOnlyEnabled = true,
+                SharingSourceCodeForResearchEnabled = true,
+                SharingSourceCodeForOpenDataSetEnabled = true
+            };
+
+            /*Assert.Equals(userProfileEvent.SharingDataEnabled, true);
+
+            Assert.Equals(userProfileEvent.SharingGenericInteractionDataForFeedBagOnlyEnabled, true);
+            Assert.Equals(userProfileEvent.SharingGenericInteractionDataForResearchEnabled, true);
+            Assert.Equals(userProfileEvent.SharingGenericInteractionDataForOpenDataSetEnabled, false);
+
+            Assert.Equals(userProfileEvent.SharingProjectSpecificDataForFeedBagOnlyEnabled, true);
+            Assert.Equals(userProfileEvent.SharingProjectSpecificDataForResearchEnabled, false);
+            Assert.Equals(userProfileEvent.SharingProjectSpecificDataForOpenDataSetEnabled, false);
+
+            Assert.Equals(userProfileEvent.SharingSourceCodeForFeedBagOnlyEnabled, true);
+            Assert.Equals(userProfileEvent.SharingSourceCodeForResearchEnabled, true);
+            Assert.Equals(userProfileEvent.SharingSourceCodeForOpenDataSetEnabled, true);*/
+
+        }
+
+        private const string SomeTargetLocation = "existing target file";
+
+        protected static IEnumerable<IDEEvent> TestEventSource(int count)
+        {
+            var baseDate = new DateTime(2014, 1, 1);
+            for (var i = 0; i < count; i++)
+            {
+                yield return new WindowEvent { TriggeredAt = baseDate.AddDays(i) };
+            }
+        }
     }
 }
